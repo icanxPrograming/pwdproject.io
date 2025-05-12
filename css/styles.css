@@ -20,14 +20,23 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.top-bar .left-section button {
-  background-color: #ff5722;
-  color: white;
-  border: none;
-  padding: 8px 16px;
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar .left-section i {
+  font-size: 25px;
+}
+
+.top-bar .left-section a {
+  /* background-color: #ff5722; */
+  color: #000;
+  padding: 2px 8px;
   font-size: 14px;
   cursor: pointer;
   border-radius: 4px;
+  text-decoration: none;
 }
 
 .top-bar .right-section a {
@@ -42,13 +51,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 5px 20px;
   background-color: white;
   border-bottom: 1px solid #ddd;
 }
 
 .logo img {
-  width: 100px; /* Sesuaikan ukuran logo */
+  width: 75px; /* Sesuaikan ukuran logo */
   height: auto;
 }
 
@@ -58,6 +67,77 @@ body {
   flex-grow: 1;
   margin: 0 20px;
   gap: 10px;
+}
+
+.combined-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.location-select {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #f8f8f8;
+  border-right: 1px solid #ddd;
+  position: relative;
+}
+
+.location-select i.fa-map-marker-alt {
+  color: #f60;
+  margin-right: 5px;
+}
+
+.location-select select {
+  border: none;
+  background: transparent;
+  padding: 10px 20px 10px 5px;
+  appearance: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.location-select i.fa-chevron-down {
+  position: absolute;
+  right: 8px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.search-input {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+}
+
+.search-input input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  padding: 0 15px;
+  color: #888;
+  cursor: pointer;
+}
+
+/* Hover effects */
+.combined-search:hover {
+  border-color: #f60;
+}
+
+.search-button:hover {
+  color: #f60;
 }
 
 .location-dropdown {
@@ -146,18 +226,27 @@ nav ul {
   font-family: Arial, sans-serif;
 }
 
+/* Tambahkan ini di bagian CSS untuk nav menu */
 nav ul li {
   position: relative;
   margin-right: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-nav ul li:hover {
-  color: #ff5722;
+.dropdown-icon {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+nav ul li:hover .dropdown-icon {
+  transform: rotate(180deg);
 }
 
 /* Submenu untuk Semua Kategori */
-nav ul li ul {
+.dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
@@ -166,19 +255,20 @@ nav ul li ul {
   border: 1px solid #ddd;
   padding: 10px;
   z-index: 1000;
+  min-width: 200px;
 }
 
-nav ul li:hover ul {
+nav ul li:hover .dropdown-menu {
   display: block;
 }
 
-nav ul li ul li {
+.dropdown-menu li {
   margin: 5px 0;
   padding: 5px;
   white-space: nowrap;
 }
 
-nav ul li ul li:hover {
+.dropdown-menu li:hover {
   background-color: #f9f9f9;
 }
 
@@ -203,7 +293,7 @@ nav ul li ul li:hover {
 
 .slides {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   height: 100%; /* Pastikan slides mengisi tinggi container */
   width: 300%;
 }
@@ -238,19 +328,20 @@ nav ul li ul li:hover {
 
 /* Main Content */
 .main-content {
-  padding: 40px 20px;
+  padding: 40px 30px;
   background-color: #f9f9f9;
-  border-radius: 10px;
-  margin: 80px auto 60px; /* ❗️ Perbesar jarak atas dan bawah */
+  border-radius: 25px 25px 0 0;
+  margin: -80px auto 60px; /* ❗️ Perbesar jarak atas dan bawah */
   width: 90%;
-  max-width: 1440px;
+  max-width: 1500px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .card-slider-container {
   position: relative;
   overflow: hidden; /* Penting untuk menyembunyikan card yang tidak aktif */
-  padding: 20px; /* Tambahkan padding untuk ruang */
+  padding: 5px; /* Tambahkan padding untuk ruang */
 }
 
 .card-slider {
@@ -262,7 +353,7 @@ nav ul li ul li:hover {
 
 .card-group {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   transition: transform 0.5s ease-in-out;
 }
 
@@ -366,4 +457,12 @@ footer {
 .social-icons {
   display: flex;
   gap: 10px;
+}
+
+.social-icons a {
+  padding: 0 5px;
+}
+
+.social-icons a i {
+  font-size: 20px;
 }

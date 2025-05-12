@@ -1,0 +1,15 @@
+# 1. Abaikan file koneksi database
+model/Koneksi.php
+
+# 3. Abaikan file lingkungan jika nanti pakai .env
+.env
+
+# 4. Abaikan folder vendor jika pakai composer
+/vendor/
+node_modules/
+
+# 5. Abaikan file log, sampah editor
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
