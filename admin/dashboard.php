@@ -2,7 +2,6 @@
 session_start();
 if (!isset($_SESSION["id_pengguna"])) {
   header("location:login.php");
-  exit;
 }
 ?>
 <!doctype html>
@@ -20,13 +19,55 @@ if (!isset($_SESSION["id_pengguna"])) {
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f9fa;
+      background-color: #f4f6f9;
+      color: #333;
     }
+
+    .navbar-light {
+      background-color: #fff !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-heading h4 {
+      font-weight: 600;
+      color: #ffc107;
+    }
+
+    .list-group-item {
+      border-radius: 0;
+      transition: background 0.2s ease;
+    }
+
+    .list-group-item:hover {
+      background-color: #f8f9fa;
+      color: #0d6efd;
+    }
+
+    .card {
+      border-radius: 8px !important;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
 
     #wrapper {
       display: flex;
       width: 100%;
     }
+
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -250px;
+      transition: margin 0.3s ease;
+    }
+
+    #sidebar-wrapper {
+      width: 250px;
+      transition: margin 0.3s ease;
+    }
+
 
     #sidebar-wrapper {
       min-height: 100vh;
@@ -79,16 +120,47 @@ if (!isset($_SESSION["id_pengguna"])) {
         <small>Admin Panel</small>
       </div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item active"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
-        <a href="#" class="list-group-item"><i class="fas fa-car-side mr-2"></i> Kelola Kendaraan</a>
-        <a href="#" class="list-group-item"><i class="fas fa-user-tie mr-2"></i> Kelola Penjual</a>
-        <a href="#" class="list-group-item"><i class="fas fa-file-invoice-dollar mr-2"></i> Transaksi</a>
-        <a href="#" class="list-group-item"><i class="fas fa-images mr-2"></i> Banner Slider</a>
-        <a href="#" class="list-group-item"><i class="fas fa-tags mr-2"></i> Kategori</a>
-        <a href="#" class="list-group-item"><i class="fas fa-map-marker-alt mr-2"></i> Lokasi</a>
-        <a href="#" class="list-group-item"><i class="fas fa-percent mr-2"></i> Promo</a>
-        <a href="#" class="list-group-item"><i class="fas fa-headset mr-2"></i> Dukungan</a>
-        <a href="#" class="list-group-item"><i class="fas fa-cog mr-2"></i> Pengaturan</a>
+        <div class="list-group list-group-flush">
+          <a href="dashboard.php" class="list-group-item list-group-item-action">
+            <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+          </a>
+          <a href="dashboard.php?module=kendaraan&page=kelola-kendaraan" class="list-group-item list-group-item-action">
+            <i class="fas fa-car-side mr-2"></i> Kelola Kendaraan
+          </a>
+          <a href="dashboard.php?module=penjual&page=kelola-penjual" class="list-group-item list-group-item-action">
+            <i class="fas fa-user-tie mr-2"></i> Kelola Penjual
+          </a>
+
+          <!-- Transaksi with submenu -->
+          <a href="#submenuTransaksi" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="collapse" aria-expanded="false">
+            <span><i class="fas fa-file-invoice-dollar mr-2"></i> Transaksi</span>
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="collapse" id="submenuTransaksi">
+            <a href="dashboard.php?module=transaksi&page=kelola-penjualan" class="list-group-item list-group-item-action pl-5">
+              Penjualan
+            </a>
+            <a href="dashboard.php?module=transaksi&page=kelola-pembelian" class="list-group-item list-group-item-action pl-5">
+              Pembelian
+            </a>
+          </div>
+
+          <a href="dashboard.php?module=kategori&page=kelola-kategori" class="list-group-item list-group-item-action">
+            <i class="fas fa-tags mr-2"></i> Kategori
+          </a>
+          <a href="dashboard.php?module=lokasi&page=kelola-lokasi" class="list-group-item list-group-item-action">
+            <i class="fas fa-map-marker-alt mr-2"></i> Lokasi
+          </a>
+          <a href="dashboard.php?module=promo&page=kelola-promo" class="list-group-item list-group-item-action">
+            <i class="fas fa-percent mr-2"></i> Promo
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-headset mr-2"></i> Dukungan
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-cog mr-2"></i> Pengaturan
+          </a>
+        </div>
       </div>
     </div>
 
@@ -114,54 +186,13 @@ if (!isset($_SESSION["id_pengguna"])) {
       </nav>
 
       <div class="container-fluid">
-        <h2 class="mt-4"><i class="fas fa-tachometer-alt"></i> Dashboard Admin</h2>
-
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-          <strong>Selamat datang!</strong> Anda masuk sebagai admin pengelola Alter-Ex.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span>&times;</span>
-          </button>
-        </div>
-
-        <div class="row mt-4">
-          <div class="col-md-3 mb-4">
-            <div class="card border-0 shadow-sm bg-primary text-white">
-              <div class="card-body">
-                <div class="card-title">Total Kendaraan</div>
-                <h3 class="card-text">124</h3>
-                <i class="fas fa-car fa-2x"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card border-0 shadow-sm bg-warning text-white">
-              <div class="card-body">
-                <div class="card-title">Penjual Terdaftar</div>
-                <h3 class="card-text">58</h3>
-                <i class="fas fa-user-tie fa-2x"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card border-0 shadow-sm bg-success text-white">
-              <div class="card-body">
-                <div class="card-title">Transaksi Sukses</div>
-                <h3 class="card-text">32</h3>
-                <i class="fas fa-file-invoice-dollar fa-2x"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card border-0 shadow-sm bg-info text-white">
-              <div class="card-body">
-                <div class="card-title">Promo Aktif</div>
-                <h3 class="card-text">4</h3>
-                <i class="fas fa-tags fa-2x"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <?php
+        $page = 'page/dashboard-main.php';
+        if (isset($_GET['module'])) {
+          $page = 'page/' . $_GET['module'] . '/' . $_GET['page'] . '.php';
+        }
+        require($page);
+        ?>
       </div>
     </div>
   </div>
@@ -172,11 +203,54 @@ if (!isset($_SESSION["id_pengguna"])) {
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
+    // Toggle sidebar
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+    // Tooltip
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    // Fungsi utama untuk menangani active menu dan collapse
+    (function() {
+      const currentURL = window.location.href;
+
+      // Ambil semua link di sidebar
+      const sidebarLinks = document.querySelectorAll('#sidebar-wrapper .list-group-item');
+
+      sidebarLinks.forEach(link => {
+        const href = link.getAttribute('href');
+
+        if (href && currentURL.includes(href)) {
+          // Hapus semua active terlebih dahulu (jika belum dilakukan)
+          document.querySelectorAll('#sidebar-wrapper .list-group-item.active').forEach(activeItem => {
+            activeItem.classList.remove('active');
+          });
+
+          // Tandai item aktif
+          link.classList.add('active');
+
+          // Jika item ini berada di dalam submenu collapse, buka menu induknya
+          const collapseParent = link.closest('.collapse');
+          if (collapseParent) {
+            collapseParent.classList.add('show');
+
+            // Tandai juga link induknya (yang mengontrol collapse)
+            const parentToggle = document.querySelector(
+              `a[data-toggle="collapse"][href="#${collapseParent.id}"]`
+            );
+            if (parentToggle) {
+              parentToggle.classList.add('active');
+            }
+          }
+        }
+      });
+    })();
   </script>
+
 
 </body>
 
