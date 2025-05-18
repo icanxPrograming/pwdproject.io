@@ -12,6 +12,7 @@
           <th scope="col" style="width: 200px;">Nama Pembeli</th>
           <th scope="col" style="width: 300px;">Nama Kendaraan</th>
           <th scope="col" style="width: 100px;">TANGGAL</th>
+          <th scope="col" style="width: 80px;">Unit</th>
           <th scope="col" style="width: 180px;">Total Harga</th>
           <th scope="col" style="width: 80px;">Pembayaran</th>
           <th scope="col" style="width: 80px;">Status</th>
@@ -32,6 +33,7 @@
             <td><?= htmlspecialchars($row['nama_pembeli']); ?></td>
             <td><?= htmlspecialchars($row['nama_mobil']); ?></td>
             <td><?= htmlspecialchars($row['tanggal']); ?></td>
+            <td><?= htmlspecialchars($row['jumlah_unit']); ?></td>
             <td><?= htmlspecialchars($row['total_harga']); ?></td>
             <td><?= htmlspecialchars($row['metode_bayar']); ?></td>
             <td><?= htmlspecialchars($row['status']); ?></td>
