@@ -10,9 +10,10 @@
         <tr>
           <th scope="col" style="width: 40px;">NO</th>
           <th scope="col" style="width: 120px;">TANGGAL</th>
-          <th scope="col" style="width: 300px;">Nama Kendaraan</th>
-          <th scope="col" style="width: 100px;">Jumlah Unit</th>
-          <th scope="col" style="width: 500px;">Deskripsi</th>
+          <th scope="col" style="width: 200px;">Nama Kendaraan</th>
+          <th scope="col" style="width: 50px;">Jumlah Unit</th>
+          <th scope="col" style="width: 50px;">Harga (Per unit)</th>
+          <th scope="col" style="width: 300px;">Deskripsi</th>
           <th scope="col" style="width: 100px;">Status Posting</th>
           <th scope="col" style="width: 120px;">AKSI</th>
         </tr>
@@ -31,6 +32,7 @@
             <td><?= htmlspecialchars($row['tanggal']); ?></td>
             <td><?= htmlspecialchars($row['nama_kendaraan']); ?></td>
             <td><?= htmlspecialchars($row['jumlah_unit']); ?></td>
+            <td><?= htmlspecialchars($row['harga_per_unit']); ?></td>
             <td><?= htmlspecialchars($row['deskripsi']); ?></td>
             <td><?= htmlspecialchars($row['status_post']); ?></td>
             <td>

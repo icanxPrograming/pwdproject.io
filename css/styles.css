@@ -15,44 +15,43 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f4f4f4;
-  padding: 10px 20px;
+  background-color: #fff;
+  padding: 10px 210px;
   font-family: Arial, sans-serif;
 }
 
-.left-section {
+.left-section,
+.right-section {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
-.top-bar .left-section i {
+.top-bar .left-section a i {
   font-size: 25px;
 }
 
-.top-bar .left-section a {
-  /* background-color: #ff5722; */
-  color: #000;
-  padding: 2px 8px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
+.top-bar .left-section a,
+.top-bar .right-section a {
+  display: inline-flex; /* Penting untuk sejajarkan ikon & teks */
+  align-items: center; /* Sejajarkan vertikal */
+  gap: 6px; /* Jarak antara ikon dan teks */
   text-decoration: none;
+  color: #000;
+  font-size: 14px;
 }
 
-.top-bar .right-section a {
-  text-decoration: none;
-  color: #333;
-  margin-left: 15px;
-  font-size: 14px;
+.top-bar .right-section a i {
+  font-size: 25px;
 }
 
 /* Styling untuk main header */
 .main-header {
   display: flex;
+  background-color: #f8f9fa;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 20px;
-  background-color: white;
+  padding: 5px 180px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -213,27 +212,34 @@ body {
   background-color: #4caf50;
 }
 
-/* Styling untuk nav menu */
+/* NAV */
 nav {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  padding: 10px 20px;
+  padding: 0 180px;
   font-family: Arial, sans-serif;
 }
 
-/* Tambahkan ini di bagian CSS untuk nav menu */
-nav ul li {
+.main-menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  margin: 0;
+  align-items: center;
+}
+
+.main-menu > li {
   position: relative;
-  margin-right: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.main-menu > li a {
+  text-decoration: none;
+  color: #000;
 }
 
 .dropdown-icon {
@@ -241,35 +247,57 @@ nav ul li {
   transition: transform 0.3s ease;
 }
 
-nav ul li:hover .dropdown-icon {
+.main-menu > li:hover .dropdown-icon {
   transform: rotate(180deg);
 }
 
-/* Submenu untuk Semua Kategori */
+/* DROPDOWN MENU */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 155%;
   left: 0;
-  background-color: white;
+  background-color: #fff;
   border: 1px solid #ddd;
-  padding: 10px;
-  z-index: 1000;
-  min-width: 200px;
+  padding: 20px;
+  z-index: 999;
+  min-width: 600px;
+  max-width: 900px;
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
 }
 
-nav ul li:hover .dropdown-menu {
+/* Tampilkan saat hover */
+.dropdown:hover .dropdown-menu {
+  display: grid;
+}
+
+/* KOLOM KATEGORI */
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-items a {
   display: block;
+  text-decoration: none;
+  color: #000;
+  padding: 4px 0;
+  transition: background 0.2s;
 }
 
-.dropdown-menu li {
-  margin: 5px 0;
-  padding: 5px;
-  white-space: nowrap;
-}
-
-.dropdown-menu li:hover {
-  background-color: #f9f9f9;
+.dropdown-items a:hover {
+  background-color: #f2f2f2;
 }
 
 /* Banner */
@@ -465,4 +493,105 @@ footer {
 
 .social-icons a i {
   font-size: 20px;
+}
+
+.mobil-page {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* === Grid Layout === */
+.grid-container {
+  display: flex;
+  flex-direction: row; /* ini penting! */
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.filter-area {
+  flex: 0 0 320px; /* Tetap di 320px, tidak ikut mengembang/mengecil */
+}
+
+.content-area {
+  flex: 3;
+}
+
+/* === Filter Box === */
+.filter-box {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-box h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.filter-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-box li {
+  margin-bottom: 6px;
+}
+
+.filter-box label {
+  display: inline-block;
+  padding-left: 4px; /* Sesuaikan jarak antara checkbox dan teks */
+  line-height: 1.4;
+  vertical-align: top;
+}
+
+.filter-box input[type="checkbox"] {
+  vertical-align: top;
+}
+
+/* === Product Grid === */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: 150px; /* Atur tinggi tetap sesuai kebutuhan */
+  border-radius: 6px;
+  margin-bottom: 10px;
+  object-position: center; /* Sentra gambar di tengah */
+}
+
+.product-card h4 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 8px;
+}
+
+.promo-link {
+  color: #d00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.promo-link:hover {
+  text-decoration: underline;
 }

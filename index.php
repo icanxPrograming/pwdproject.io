@@ -4,222 +4,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proses Tugas Besar</title>
+  <title>Alter-Ex | ANDALANMU</title>
   <link rel="stylesheet" href="css/styles.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
 <body>
-  <!-- Header START -->
-  <header>
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="left-section">
-        <i class="fa-regular fa-circle-down"></i>
-        <a href="#">Download OLX App</a>
-      </div>
-      <div class="right-section">
-        <a href="#">Promo</a>
-        <a href="#">News</a>
-      </div>
-    </div>
 
-    <!-- Main Header -->
-    <div class="main-header">
-      <div class="logo">
-        <img src="asset/Logo Alter-Ex.png" alt="Logo Alter-Ex" />
-      </div>
-      <div class="search-bar">
-        <!-- Location Dropdown -->
-        <div class="combined-search">
-          <div class="location-select">
-            <i class="fas fa-map-marker-alt"></i>
-            <select id="location-dropdown">
-              <option value="jakarta-selatan">Jakarta Selatan</option>
-              <option value="jakarta-utara">Jakarta Utara</option>
-              <option value="jakarta-timur">Jakarta Timur</option>
-              <option value="jakarta-barat">Jakarta Barat</option>
-              <option value="jakarta-pusat">Jakarta Pusat</option>
-            </select>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="search-input">
-            <input
-              type="text"
-              id="search-input"
-              placeholder="">
-            <button class="search-button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
+  <?php include 'beranda/components/header.php'; ?>
+  <?php include 'beranda/components/navbar.php'; ?>
 
-        <!-- Input Search -->
-        <div class="input-group">
-          <input
-            type="text"
-            placeholder="Temukan Mobil, Handphone, dan lainnya..." />
-          <button class="filter-button">
-            <i class="fas fa-filter"></i> Filter
-          </button>
-          <button class="search-icon">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-      <div class="auth-buttons">
-        <a href="admin/login.php" class="login-btn"><button>Login/daftar</button></a>
-        <button class="sell-button">+ JUAL</button>
-      </div>
-    </div>
-  </header>
+  <?php
+  $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-  <!-- Nav Menu -->
-  <nav>
-    <ul>
-      <li>
-        Semua Kategori <i class="fas fa-chevron-down dropdown-icon"></i>
-        <ul class="dropdown-menu">
-          <li>Mobil Bekas</li>
-          <li>Motor Bekas</li>
-          <li>Properti</li>
-          <li>Handphone</li>
-          <li>Jasa & Lowongan Kerja</li>
-          <li>Televisi, Audio & Aksesoris</li>
-        </ul>
-      </li>
-      <li>Mobil Bekas</li>
-      <li>Motor Bekas</li>
-      <li>Properti</li>
-      <li>Handphone</li>
-      <li>Jasa & Lowongan Kerja</li>
-      <li>Televisi, Audio & Aksesoris</li>
-    </ul>
-  </nav>
-  <!-- Header END -->
+  if ($page === 'mobil') {
+    // Tampilan 2 kolom: filter & mobil
+    echo '<section class="mobil-page">';
+    echo '<div class="grid-container">';
+    echo '<aside class="filter-area">';
+    include 'beranda/mobil/filter-mobil.php';
+    echo '</aside>';
+    echo '<section class="content-area">';
+    include 'beranda/mobil/kelola-mobil.php';
+    echo '</section>';
+    echo '</div>';
+    echo '</section>';
+  } else {
+    // Halaman utama (landing page)
+    include 'beranda/landingpage/banner.php';
+    include 'beranda/landingpage/main-content.php';
+  }
+  ?>
 
-  <!-- Home START -->
-  <section class="banner">
-    <div class="slider-container">
-      <button class="slide-btn prev">&lt;</button>
-      <div class="slides">
-        <img
-          src="https://imgcdn.oto.com/marketing/wuling-air-ev-desktop-min-1729491857.jpg"
-          alt="Slide 1" />
-        <img
-          src="https://imgcdn.oto.com/marketing/chery-omoda-5-desktop-min-1729491988.jpg"
-          alt="Slide 2" />
-        <img
-          src="https://imgcdn.oto.com/marketing/vinfast-vf-3-ev-desktop-com-1739276779.jpg"
-          alt="Slide 3" />
-      </div>
-      <button class="slide-btn next">&gt;</button>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <section class="main-content">
-    <h2>Cari Yang Terbaik</h2>
-    <div class="card-slider-container">
-      <button class="card-slide-btn prev" id="cardPrevBtn">&lt;</button>
-      <div class="card-slider">
-        <div class="card-group" id="cardGroup">
-          <div class="card">
-            <img src="mobil-baru-icon.png" alt="Mobil Baru" />
-            <h3>Mobil Baru</h3>
-            <p>Penawaran Menarik</p>
-          </div>
-          <div class="card">
-            <img src="mobil-bekas-icon.png" alt="Mobil Bekas" />
-            <h3>Mobil Bekas</h3>
-            <p>Berkualitas</p>
-          </div>
-          <div class="card">
-            <img src="motor-baru-icon.png" alt="Motor Baru" />
-            <h3>Motor Baru</h3>
-            <p>Pilihan Terlengkap</p>
-          </div>
-          <div class="card">
-            <img src="truk-baru-icon.png" alt="Truk Baru" />
-            <h3>Truk Baru</h3>
-            <p>Harga Kompetitif</p>
-          </div>
-          <div class="card">
-            <img src="berita-mobil-icon.png" alt="Berita Mobil" />
-            <h3>Berita Mobil</h3>
-            <p>Update Terbaru</p>
-          </div>
-          <div class="card">
-            <img src="bandingkan-mobil-icon.png" alt="Bandingkan Mobil" />
-            <h3>Bandingkan Mobil</h3>
-            <p>Pilih yang Tepat</p>
-          </div>
-          <div class="card">
-            <img src="bandingkan-motor-icon.png" alt="Bandingkan Motor" />
-            <h3>Bandingkan Motor</h3>
-            <p>Pilih yang Tepat</p>
-          </div>
-          <div class="card">
-            <img src="bandingkan-truk-icon.png" alt="Bandingkan Truk" />
-            <h3>Bandingkan Truk</h3>
-            <p>Pilih yang Tepat</p>
-          </div>
-          <div class="card">
-            <img src="tukartambah-mobil-icon.png" alt="Tukar Tambah Mobil" />
-            <h3>Tukar Tambah Mobil</h3>
-            <p>Pilih yang Tepat</p>
-          </div>
-          <div class="card">
-            <img src="tukartambah-motor-icon.png" alt="Tukar Tambah Motor" />
-            <h3>Tukar Tambah Motor</h3>
-            <p>Pilih yang Tepat</p>
-          </div>
-          <div class="card">
-            <img src="promo-icon.png" alt="Promo" />
-            <h3>Promo</h3>
-            <p>Pilih yang Tepat</p>
-          </div>
-        </div>
-      </div>
-      <button class="card-slide-btn next" id="cardNextBtn">&gt;</button>
-    </div>
-  </section>
-  <!-- Home END -->
-
-  <!-- Footer START -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>tubes.id</h3>
-        <p>Millennium Centennial Center, Jl. Jenderal Sudirman No.Kav.25</p>
-      </div>
-      <div class="footer-section">
-        <h3>Pusat Bantuan</h3>
-        <a href="#">Kebijakan Privasi</a><br />
-        <a href="#">Tata Cara Pembayaran</a><br />
-        <a href="#">News & Article</a>
-      </div>
-      <div class="footer-section">
-        <h3>Hubungi Kami</h3>
-        <p>Email: tubes@yahoo.com</p>
-        <p>Telp: (021) 3190 2000</p>
-        <div class="social-icons">
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-      </div>
-    </div>
-    <p>
-      &copy; 2025 tubes.id - Berizin dan Diawasi oleh Otoritas Jasa
-      Perwebsitan
-    </p>
-  </footer>
-  <!-- Footer END -->
-
+  <?php include 'beranda/components/footer.php'; ?>
   <script src="js/script.js"></script>
+  <script>
+    feather.replace();
+  </script>
 </body>
 
 </html>
