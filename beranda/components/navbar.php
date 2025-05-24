@@ -28,24 +28,21 @@
           </div>
         </div>
 
-        <!-- Truk & Alat Berat -->
+        <!-- Truk -->
         <div class="dropdown-column">
-          <div class="dropdown-title">Truk & Alat Berat</div>
+          <div class="dropdown-title">Truk</div>
           <div class="dropdown-items">
             <a href="#">Truck Ringan</a>
             <a href="#">Truck Gandeng</a>
-            <a href="#">Forklift</a>
-            <a href="#">Excavator</a>
           </div>
         </div>
 
-        <!-- Kapal & Yacht -->
+        <!--Alat Berat -->
         <div class="dropdown-column">
-          <div class="dropdown-title">Kapal & Yacht</div>
+          <div class="dropdown-title">Alat Berat</div>
           <div class="dropdown-items">
-            <a href="#">Speedboat</a>
-            <a href="#">Kapal Nelayan</a>
-            <a href="#">Yacht Pribadi</a>
+            <a href="#">Forklift</a>
+            <a href="#">Excavator</a>
           </div>
         </div>
 
@@ -69,16 +66,29 @@
           </div>
         </div>
 
+        <!-- Sepeda -->
+        <div class="dropdown-column">
+          <div class="dropdown-title">Sepeda</div>
+          <div class="dropdown-items">
+            <a href="#">Sepeda Gunung</a>
+            <a href="#">Sepeda BMX</a>
+            <a href="#">Sepeda Lipat</a>
+            <a href="#">Sepeda Listrik</a>
+            <a href="#">Sepeda Balap</a>
+          </div>
+        </div>
+
       </div>
     </li>
 
     <!-- Menu Utama -->
     <li>
-      <a href="index.php?page=mobil">Mobil Bekas</a>
+      <a href="index.php?page=mobil">Mobil</a>
     </li>
-    <li><a href="#">Motor Bekas</a></li>
-    <li><a href="#">Truk & Alat Berat</a></li>
-    <li><a href="#">Kapal & Yacht</a></li>
-    <li><a href="#">Kendaraan Listrik</a></li>
+    <li><a href="index.php?page=motor">Motor</a></li>
+    <li><a href="#">Truk</a></li>
+    <li><a href="#">Alat Berat</a></li>
+    <li><a href="#">Sepeda</a></li>
+    <li><a href="#">Kendaraan Khusus</a></li>
   </ul>
 </nav>

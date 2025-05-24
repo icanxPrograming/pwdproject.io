@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-require_once('Koneksi.php');
+require_once __DIR__ . '/Koneksi.php';
 
 class Auth extends Koneksi
 {
@@ -13,23 +11,50 @@ class Auth extends Koneksi
     $this->conn = $this->getConnection();
   }
 
-  public function login($email, $password)
+  /**
+   * Fungsi untuk login pengguna
+   *
+   * @param string $username Nama pengguna
+   * @param string $password Kata sandi
+   * @return array{id_pengguna: int, username: string, level: int}|false Data pengguna jika login berhasil, false jika gagal
+   */
+  public function login($username, $password)
   {
-    $sql = "SELECT *FROM auth WHERE email='" . $email . "'";
-    $query = $this->conn->query($sql);
+    $sql = "SELECT * FROM auth WHERE username=?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($query->num_rows > 0) {
-      $row = $query->fetch_array();
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
       if (password_verify($password, $row['password'])) {
-        $_SESSION['id_pengguna'] = $row['id_pengguna'];
-        return $row['id_pengguna'];
-      } else {
-        return false;
+        return [
+          'id_pengguna' => $row['id_pengguna'],
+          'username' => $row['username'],
+          'level' => $row['level']
+        ];
       }
-    } else {
+    }
+    return false;
+  }
+
+  public function register($email, $username, $password)
+  {
+    $cek = $this->conn->prepare("SELECT * FROM auth WHERE username = ? OR email = ?");
+    $cek->bind_param("ss", $username, $email);
+    $cek->execute();
+    $result = $cek->get_result();
+
+    if ($result->num_rows > 0) {
       return false;
     }
+
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    $level = 1;
+
+    $stmt = $this->conn->prepare("INSERT INTO auth (email, username, password, level) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sssi", $email, $username, $passwordHash, $level);
+    return $stmt->execute();
   }
 }
-
-$auth = new Auth();

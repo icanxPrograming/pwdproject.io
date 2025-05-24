@@ -235,11 +235,13 @@ nav {
   display: flex;
   align-items: center;
   gap: 5px;
+  font-family: "Roboto", sans-serif;
 }
 
 .main-menu > li a {
   text-decoration: none;
   color: #000;
+  font-family: "Roboto", sans-serif;
 }
 
 .dropdown-icon {
@@ -255,7 +257,7 @@ nav {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 155%;
+  top: 100%;
   left: 0;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -283,7 +285,7 @@ nav {
   font-weight: bold;
   margin-bottom: 10px;
   padding-bottom: 5px;
-  border-bottom: 1px solid #ccc;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #333;
 }
@@ -291,7 +293,10 @@ nav {
 .dropdown-items a {
   display: block;
   text-decoration: none;
-  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #002f34;
   padding: 4px 0;
   transition: background 0.2s;
 }
@@ -445,10 +450,18 @@ nav {
 
 /* Footer */
 footer {
-  background-color: #f8f9fa;
+  background-color: #f3f3f3;
   padding: 40px 20px; /* Tambahkan padding atas/bawah */
   text-align: center;
   margin-top: 60px; /* Jarak dari main-content */
+}
+
+.footer-img {
+  width: 40%;
+}
+
+.footer-img img {
+  width: 100px;
 }
 
 .footer-content {
@@ -458,12 +471,12 @@ footer {
   max-width: 1200px;
   margin: auto;
   text-align: left;
-  padding: 20px; /* Tambahkan padding */
+  padding: 0 20px 20px; /* Tambahkan padding */
 }
 
 .footer-section {
   margin: 10px;
-  padding: 10px; /* Ruang dalam section */
+  padding: 0 10px 10px; /* Ruang dalam section */
 }
 
 .footer-section h3 {
@@ -473,13 +486,43 @@ footer {
 
 .footer-section p,
 .footer-section a {
-  font-size: 12px;
+  font-size: 14px;
   color: #333;
   text-decoration: none;
 }
 
+.footer-section .link a {
+  font-size: 14px;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 2;
+  font-family: "Montserrat", sans-serif;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Jarak antara ikon dan teks */
+  text-decoration: none;
+  color: inherit;
+}
+
 .footer-section a:hover {
   text-decoration: underline;
+}
+
+.end-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  align-items: center;
+  margin: auto;
+}
+
+.end-footer .end-footer-content img {
+  width: 100px;
 }
 
 .social-icons {
@@ -495,7 +538,8 @@ footer {
   font-size: 20px;
 }
 
-.mobil-page {
+.mobil-page,
+.motor-page {
   padding: 20px;
   background-color: #f9f9f9;
 }
@@ -594,4 +638,77 @@ footer {
 
 .promo-link:hover {
   text-decoration: underline;
+}
+
+/* Style untuk User Menu */
+.user-menu {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  color: #333;
+  font-size: 14px;
+}
+
+.dropdown-user {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 100;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+  padding: 5px 0;
+}
+
+.user-menu:hover .dropdown-user {
+  display: block;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  color: #333;
+  text-decoration: none;
+  gap: 8px;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e9ecef;
+  margin: 5px 0;
+}
+
+/* Style untuk tombol lainnya */
+.sell-button {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.login-btn {
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
 }

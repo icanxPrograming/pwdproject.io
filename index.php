@@ -1,3 +1,8 @@
+<?php
+// Set default timezone (opsional)
+date_default_timezone_set('Asia/Jakarta');
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,6 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alter-Ex | ANDALANMU</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
@@ -19,7 +27,6 @@
   $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
   if ($page === 'mobil') {
-    // Tampilan 2 kolom: filter & mobil
     echo '<section class="mobil-page">';
     echo '<div class="grid-container">';
     echo '<aside class="filter-area">';
@@ -30,8 +37,18 @@
     echo '</section>';
     echo '</div>';
     echo '</section>';
+  } else if ($page === 'motor') {
+    echo '<section class="motor-page">';
+    echo '<div class="grid-container">';
+    echo '<aside class="filter-area">';
+    include 'beranda/motor/filter-motor.php';
+    echo '</aside>';
+    echo '<section class="content-area">';
+    include 'beranda/motor/kelola-motor.php';
+    echo '</section>';
+    echo '</div>';
+    echo '</section>';
   } else {
-    // Halaman utama (landing page)
     include 'beranda/landingpage/banner.php';
     include 'beranda/landingpage/main-content.php';
   }

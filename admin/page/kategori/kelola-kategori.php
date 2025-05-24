@@ -12,6 +12,7 @@
           <th scope="col" style="width: 120px;">Nama Kategori</th>
           <th scope="col" style="width: 80px;">Jumlah Unit</th>
           <th scope="col" style="width: 200px;">Deskripsi</th>
+          <th scope="col" style="width: 80px;">Jenis</th>
           <th scope="col" style="width: 50px;">Status</th>
           <th scope="col" style="width: 100px;">AKSI</th>
         </tr>
@@ -30,6 +31,7 @@
             <td><?= htmlspecialchars($row['nama_kategori']); ?></td>
             <td><?= htmlspecialchars($row['unit']); ?></td>
             <td><?= htmlspecialchars($row['deskripsi']); ?></td>
+            <td><?= htmlspecialchars($row['jenis']); ?></td>
             <td><?= htmlspecialchars($row['status']); ?></td>
             <td>
               <a href="#" class="btn btn-sm btn-outline-success mr-1" data-toggle="tooltip" data-placement="top" title="Detail">

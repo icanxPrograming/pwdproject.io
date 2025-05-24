@@ -24,4 +24,18 @@ class Kategori extends Koneksi
     }
     return $data;
   }
+
+  public function getByJenis($jenis)
+  {
+    $stmt = $this->conn->prepare("SELECT * FROM kategori WHERE jenis = ? AND status = 'Aktif'");
+    $stmt->bind_param("s", $jenis);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+      $data[] = $row;
+    }
+    return $data;
+  }
 }

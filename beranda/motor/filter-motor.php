@@ -4,7 +4,7 @@
     <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Kategori.php');
     $kategori = new Kategori();
-    $dataKategori = $kategori->getByJenis('mobil');
+    $dataKategori = $kategori->getByJenis('motor');
 
     foreach ($dataKategori as $kat):
     ?>
@@ -19,9 +19,9 @@
 
   <h3>Merk</h3>
   <ul>
-    <li><label><input type="checkbox" name="merk[]" value="Toyota"> Nissan</label></li>
-    <li><label><input type="checkbox" name="merk[]" value="Honda"> Toyota</label></li>
+    <li><label><input type="checkbox" name="merk[]" value="Toyota"> Yamaha</label></li>
     <li><label><input type="checkbox" name="merk[]" value="Honda"> Honda</label></li>
+    <li><label><input type="checkbox" name="merk[]" value="Honda"> Suzuki</label></li>
   </ul>
 
   <h3>Kondisi</h3>

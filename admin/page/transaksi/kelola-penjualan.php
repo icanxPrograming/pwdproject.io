@@ -31,7 +31,7 @@
           <tr>
             <td><?= $nomor++; ?></td>
             <td><?= htmlspecialchars($row['nama_pembeli']); ?></td>
-            <td><?= htmlspecialchars($row['nama_mobil']); ?></td>
+            <td><?= htmlspecialchars($row['nama_kendaraan']); ?></td>
             <td><?= htmlspecialchars($row['tanggal']); ?></td>
             <td><?= htmlspecialchars($row['jumlah_unit']); ?></td>
             <td><?= htmlspecialchars($row['total_harga']); ?></td>

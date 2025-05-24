@@ -1,8 +1,15 @@
 <?php
-session_start();
-if (!isset($_SESSION["id_pengguna"])) {
-  header("location:login.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Session.php';
+
+$session = new AppSession();
+
+if (!$session->isLoggedIn() || !$session->isAdmin()) {
+  header("Location: ../index.php");
+  exit();
 }
+
+// Ambil data user
+$user = $session->getUserData();
 ?>
 <!doctype html>
 <html lang="id">
@@ -114,55 +121,62 @@ if (!isset($_SESSION["id_pengguna"])) {
 
   <div id="wrapper">
     <!-- Sidebar -->
-    <div id="sidebar-wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" class="d-flex flex-column position-relative">
       <div class="sidebar-heading text-center py-4 border-bottom">
         <h4><i class="fas fa-car"></i> Alter-Ex</h4>
         <small>Admin Panel</small>
       </div>
-      <div class="list-group list-group-flush">
-        <div class="list-group list-group-flush">
-          <a href="dashboard.php" class="list-group-item list-group-item-action">
-            <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
-          </a>
-          <a href="dashboard.php?module=kendaraan&page=kelola-kendaraan" class="list-group-item list-group-item-action">
-            <i class="fas fa-car-side mr-2"></i> Kelola Kendaraan
-          </a>
-          <a href="dashboard.php?module=penjual&page=kelola-penjual" class="list-group-item list-group-item-action">
-            <i class="fas fa-user-tie mr-2"></i> Kelola Penjual
-          </a>
 
-          <!-- Transaksi with submenu -->
-          <a href="#submenuTransaksi" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="collapse" aria-expanded="false">
-            <span><i class="fas fa-file-invoice-dollar mr-2"></i> Transaksi</span>
-            <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="collapse" id="submenuTransaksi">
-            <a href="dashboard.php?module=transaksi&page=kelola-penjualan" class="list-group-item list-group-item-action pl-5">
-              Penjualan
-            </a>
-            <a href="dashboard.php?module=transaksi&page=kelola-pembelian" class="list-group-item list-group-item-action pl-5">
-              Pembelian
-            </a>
-          </div>
-
-          <a href="dashboard.php?module=kategori&page=kelola-kategori" class="list-group-item list-group-item-action">
-            <i class="fas fa-tags mr-2"></i> Kategori
-          </a>
-          <a href="dashboard.php?module=lokasi&page=kelola-lokasi" class="list-group-item list-group-item-action">
-            <i class="fas fa-map-marker-alt mr-2"></i> Lokasi
-          </a>
-          <a href="dashboard.php?module=promo&page=kelola-promo" class="list-group-item list-group-item-action">
-            <i class="fas fa-percent mr-2"></i> Promo
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <i class="fas fa-headset mr-2"></i> Dukungan
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <i class="fas fa-cog mr-2"></i> Pengaturan
-          </a>
+      <div class="list-group list-group-flush flex-grow-1">
+        <a href="dashboard.php" class="list-group-item list-group-item-action">
+          <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+        </a>
+        <a href="#submenuKendaraan" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="collapse" aria-expanded="false">
+          <span><i class="fas fa-car-side mr-2"></i> Kelola Kendaraan</span>
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <div class="collapse" id="submenuKendaraan">
+          <a href="dashboard.php?module=kendaraan&page=mobil" class="list-group-item list-group-item-action pl-5">Mobil</a>
+          <a href="dashboard.php?module=kendaraan&page=motor" class="list-group-item list-group-item-action pl-5">Motor</a>
         </div>
+
+        <a href="dashboard.php?module=penjual&page=kelola-penjual" class="list-group-item list-group-item-action">
+          <i class="fas fa-user-tie mr-2"></i> Kelola Penjual
+        </a>
+
+        <a href="#submenuTransaksi" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="collapse" aria-expanded="false">
+          <span><i class="fas fa-file-invoice-dollar mr-2"></i> Transaksi</span>
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <div class="collapse" id="submenuTransaksi">
+          <a href="dashboard.php?module=transaksi&page=kelola-penjualan" class="list-group-item list-group-item-action pl-5">Penjualan</a>
+          <a href="dashboard.php?module=transaksi&page=kelola-pembelian" class="list-group-item list-group-item-action pl-5">Pembelian</a>
+        </div>
+
+        <a href="dashboard.php?module=kategori&page=kelola-kategori" class="list-group-item list-group-item-action">
+          <i class="fas fa-tags mr-2"></i> Kategori
+        </a>
+        <a href="dashboard.php?module=lokasi&page=kelola-lokasi" class="list-group-item list-group-item-action">
+          <i class="fas fa-map-marker-alt mr-2"></i> Lokasi
+        </a>
+        <a href="dashboard.php?module=promo&page=kelola-promo" class="list-group-item list-group-item-action">
+          <i class="fas fa-percent mr-2"></i> Promo
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <i class="fas fa-headset mr-2"></i> Dukungan
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <i class="fas fa-cog mr-2"></i> Pengaturan
+        </a>
       </div>
+
+      <!-- Tombol ke Landing Page -->
+      <a href="../index.php" class="list-group-item list-group-item-action text-center position-absolute w-100" style="bottom: 0;">
+        <i class="fas fa-home mr-2"></i> Kembali ke Halaman Utama
+      </a>
     </div>
+
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -173,7 +187,7 @@ if (!isset($_SESSION["id_pengguna"])) {
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown">
-                <i class="fas fa-user-circle"></i> Admin
+                <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($_SESSION['username'] ?? 'Admin'); ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Profil</a>
@@ -187,11 +201,12 @@ if (!isset($_SESSION["id_pengguna"])) {
 
       <div class="container-fluid">
         <?php
-        $page = 'page/dashboard-main.php';
-        if (isset($_GET['module'])) {
-          $page = 'page/' . $_GET['module'] . '/' . $_GET['page'] . '.php';
+        $page = 'dashboard-main';
+        if (isset($_GET['module']) && isset($_GET['page'])) {
+          $page = "{$_GET['module']}/{$_GET['page']}";
         }
-        require($page);
+
+        require "page/" . $page . ".php";
         ?>
       </div>
     </div>
@@ -214,31 +229,23 @@ if (!isset($_SESSION["id_pengguna"])) {
       $('[data-toggle="tooltip"]').tooltip();
     });
 
-    // Fungsi utama untuk menangani active menu dan collapse
+    // Highlight aktif + buka submenu jika aktif
     (function() {
       const currentURL = window.location.href;
-
-      // Ambil semua link di sidebar
       const sidebarLinks = document.querySelectorAll('#sidebar-wrapper .list-group-item');
 
       sidebarLinks.forEach(link => {
         const href = link.getAttribute('href');
-
         if (href && currentURL.includes(href)) {
-          // Hapus semua active terlebih dahulu (jika belum dilakukan)
           document.querySelectorAll('#sidebar-wrapper .list-group-item.active').forEach(activeItem => {
             activeItem.classList.remove('active');
           });
 
-          // Tandai item aktif
           link.classList.add('active');
 
-          // Jika item ini berada di dalam submenu collapse, buka menu induknya
           const collapseParent = link.closest('.collapse');
           if (collapseParent) {
             collapseParent.classList.add('show');
-
-            // Tandai juga link induknya (yang mengontrol collapse)
             const parentToggle = document.querySelector(
               `a[data-toggle="collapse"][href="#${collapseParent.id}"]`
             );
@@ -249,7 +256,22 @@ if (!isset($_SESSION["id_pengguna"])) {
         }
       });
     })();
+
+    // Accordion behavior: hanya 1 submenu terbuka
+    document.querySelectorAll('a[data-toggle="collapse"]').forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        const targetCollapse = document.querySelector(targetId);
+
+        document.querySelectorAll('.collapse.show').forEach(openCollapse => {
+          if (openCollapse !== targetCollapse) {
+            $(openCollapse).collapse('hide');
+          }
+        });
+      });
+    });
   </script>
+
 
 
 </body>

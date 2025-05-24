@@ -1,15 +1,21 @@
 <?php
-include 'Koneksi.php';
+require_once __DIR__ . '/Koneksi.php';
 
 $db = new Koneksi();
 $conn = $db->getConnection();
 
 $dataDashboard = [];
 
-// Total Kendaraan (dengan status_post = 'Posting')
-$query = $conn->query("SELECT COUNT(*) as total FROM kendaraan WHERE status_post = 'Posting'");
-$row = $query->fetch_assoc();
-$dataDashboard['kendaraan'] = $row['total'];
+// Total Kendaraan (dari tabel mobil dan motor, status_post = 'Posting')
+$queryMobil = $conn->query("SELECT COUNT(*) as total FROM mobil WHERE status_post = 'Posting'");
+$rowMobil = $queryMobil->fetch_assoc();
+$totalMobil = $rowMobil['total'];
+
+$queryMotor = $conn->query("SELECT COUNT(*) as total FROM motor WHERE status_post = 'Posting'");
+$rowMotor = $queryMotor->fetch_assoc();
+$totalMotor = $rowMotor['total'];
+
+$dataDashboard['kendaraan'] = $totalMobil + $totalMotor;
 
 // Penjual (status = 'Aktif')
 $query = $conn->query("SELECT COUNT(*) as total FROM penjual WHERE status = 'Aktif'");

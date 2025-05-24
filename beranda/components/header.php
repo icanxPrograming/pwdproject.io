@@ -1,7 +1,15 @@
 <?php
+// Load model Lokasi
 require_once(__DIR__ . '/../../model/Lokasi.php');
 $lokasi = new Lokasi();
 $dataLokasi = $lokasi->getAll();
+
+// Load AppSession
+require_once __DIR__ . '/../../model/Session.php';
+$session = new AppSession(); // Otomatis start session jika belum aktif
+
+// Ambil data user jika login
+$userData = $session->isLoggedIn() ? $session->getUserData() : null;
 ?>
 
 <!-- Header START -->
@@ -9,16 +17,14 @@ $dataLokasi = $lokasi->getAll();
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="left-section">
-      <a href="#"><i data-feather="smartphone"></i> Download OLX App</a>
+      <a href="#"><i data-feather="smartphone"></i> Download Alter-Ex App</a>
     </div>
     <div class="right-section">
       <a href="#">
-        <i data-feather="tag"></i> <!-- Ikon untuk Promo -->
-        Promo
+        <i data-feather="tag"></i> Promo
       </a>
       <a href="#">
-        <i data-feather="file-text"></i> <!-- Ikon untuk News -->
-        News
+        <i data-feather="file-text"></i> News
       </a>
     </div>
   </div>
@@ -27,7 +33,7 @@ $dataLokasi = $lokasi->getAll();
   <div class="main-header">
     <div class="logo">
       <a href="index.php?page=home">
-        <img src="asset/Logo Alter-Ex.png" alt="Logo Alter-Ex" />
+        <img src="asset/logo-banner/Logo Alter-Ex.png" alt="Logo Alter-Ex" />
       </a>
     </div>
     <div class="search-bar">
@@ -57,8 +63,40 @@ $dataLokasi = $lokasi->getAll();
         <button class="search-icon"><i class="fas fa-search"></i></button>
       </div>
     </div>
+
     <div class="auth-buttons">
-      <a href="admin/login.php" class="login-btn"><button>Login/daftar</button></a>
+      <?php if ($userData): ?>
+        <!-- Tampilan saat sudah login -->
+        <div class="user-menu">
+          <button class="user-btn">
+            <i class="fas fa-user-circle"></i>
+            <span><?= htmlspecialchars($userData['username']) ?></span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-user">
+            <?php if ($session->isAdmin()): ?>
+              <a href="admin/dashboard.php" class="dropdown-item">
+                <i class="fas fa-tachometer-alt"></i> Dashboard Admin
+              </a>
+            <?php endif; ?>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-user-cog"></i> Profil
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="admin/logout.php" class="dropdown-item">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </div>
+      <?php endif; ?>
+
+      <?php if (!$userData): ?>
+        <!-- Tampilkan login hanya jika belum login -->
+        <a href="admin/login.php" class="login-btn">
+          <button>Login/daftar</button>
+        </a>
+      <?php endif; ?>
+      <!-- Tombol JUAL tetap muncul baik login maupun tidak -->
       <button class="sell-button">+ JUAL</button>
     </div>
   </div>
