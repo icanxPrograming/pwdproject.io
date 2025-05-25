@@ -6,7 +6,7 @@ $conn = $db->getConnection();
 
 $dataDashboard = [];
 
-// Total Kendaraan (dari tabel mobil dan motor, status_post = 'Posting')
+// Total Kendaraan (dari tabel mobil, motor, truk, alatberat, sepeda, kend_khusus, status_post = 'Posting')
 $queryMobil = $conn->query("SELECT COUNT(*) as total FROM mobil WHERE status_post = 'Posting'");
 $rowMobil = $queryMobil->fetch_assoc();
 $totalMobil = $rowMobil['total'];
@@ -15,7 +15,25 @@ $queryMotor = $conn->query("SELECT COUNT(*) as total FROM motor WHERE status_pos
 $rowMotor = $queryMotor->fetch_assoc();
 $totalMotor = $rowMotor['total'];
 
-$dataDashboard['kendaraan'] = $totalMobil + $totalMotor;
+$queryTruk = $conn->query("SELECT COUNT(*) as total FROM truk WHERE status_post = 'Posting'");
+$rowTruk = $queryTruk->fetch_assoc();
+$totalTruk = $rowTruk['total'];
+
+$queryAlatBerat = $conn->query("SELECT COUNT(*) as total FROM alat_berat WHERE status_post = 'Posting'");
+$rowAlatBerat = $queryAlatBerat->fetch_assoc();
+$totalAlatBerat = $rowAlatBerat['total'];
+
+$querySepeda = $conn->query("SELECT COUNT(*) as total FROM sepeda WHERE status_post = 'Posting'");
+$rowSepeda = $querySepeda->fetch_assoc();
+$totalSepeda = $rowSepeda['total'];
+
+$queryKendKhusus = $conn->query("SELECT COUNT(*) as total FROM kend_khusus WHERE status_post = 'Posting'");
+$rowKendKhusus = $queryKendKhusus->fetch_assoc();
+$totalKendKhusus = $rowKendKhusus['total'];
+
+// Jumlahkan semua total kendaraan
+$dataDashboard['kendaraan'] = $totalMobil + $totalMotor + $totalTruk + $totalAlatBerat + $totalSepeda + $totalKendKhusus;
+
 
 // Penjual (status = 'Aktif')
 $query = $conn->query("SELECT COUNT(*) as total FROM penjual WHERE status = 'Aktif'");

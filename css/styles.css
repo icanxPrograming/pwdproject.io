@@ -209,7 +209,13 @@ body {
 }
 
 .auth-buttons .sell-button {
-  background-color: #4caf50;
+  background: linear-gradient(90deg, #f9a825, #ff6f00);
+  color: white;
+  font-weight: bold;
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* NAV */
@@ -539,7 +545,11 @@ footer {
 }
 
 .mobil-page,
-.motor-page {
+.motor-page,
+.truk-page,
+.alat_berat_page,
+.sepeda-page,
+.kend_khusus_page {
   padding: 20px;
   background-color: #f9f9f9;
 }

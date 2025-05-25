@@ -6,17 +6,19 @@ $motors = $motor->getMotor();
 
 <h2 class="mt-4 mb-4"><i class="fas fa-motorcycle"></i> Daftar Motor</h2>
 
-<?php if (isset($_GET['success'])): ?>
-  <div class="alert alert-success"><?= htmlspecialchars($_GET['success']) ?></div>
-<?php elseif (isset($_GET['error'])): ?>
-  <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
+<?php if (isset($_SESSION['success'])): ?>
+  <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+  <?php unset($_SESSION['success']); ?>
+<?php elseif (isset($_SESSION['error'])): ?>
+  <div class="alert alert-danger"><?= $_SESSION['error'] ?></div>
+  <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
 
 <div class="row">
   <div class="col">
     <div class="mb-2">
       <!-- Tombol Tambah -->
-      <a href="dashboard.php?module=kendaraan&page=tambah&type=motor" class="btn btn-primary">
+      <a href="dashboard.php?module=kendaraan&page=tambah-kendaraan&type=motor" class="btn btn-primary">
         <i class="fa fa-plus"></i> Tambah Motor
       </a>
     </div>
@@ -53,11 +55,11 @@ $motors = $motor->getMotor();
                 <a href="#" class="btn btn-sm btn-outline-success mr-1" title="Detail">
                   <i class="fa fa-eye"></i>
                 </a>
-                <a href="dashboard.php?module=kendaraan&page=edit&type=motor&id=<?= $row['id_motor'] ?>"
+                <a href="dashboard.php?module=kendaraan&page=edit-kendaraan&type=motor&id=<?= $row['id_motor'] ?>"
                   class="btn btn-sm btn-outline-warning mr-1" title="Edit">
                   <i class="fa fa-edit"></i>
                 </a>
-                <a href="/PWD-Project-Mandiri/admin/page/kendaraan/hapus.php?type=motor&id=<?= $row['id_motor'] ?>"
+                <a href="/PWD-Project-Mandiri/admin/page/kendaraan/hapus-kendaraan.php?type=motor&id=<?= $row['id_motor'] ?>"
                   onclick="return confirm('Yakin ingin menghapus motor <?= addslashes($row['nama_motor']) ?>?');"
                   class="btn btn-sm btn-outline-danger" title="Hapus">
                   <i class="fa fa-trash"></i>

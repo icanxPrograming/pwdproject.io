@@ -1,5 +1,4 @@
 <?php
-// Set default timezone (opsional)
 date_default_timezone_set('Asia/Jakarta');
 ?>
 
@@ -45,6 +44,50 @@ date_default_timezone_set('Asia/Jakarta');
     echo '</aside>';
     echo '<section class="content-area">';
     include 'beranda/motor/kelola-motor.php';
+    echo '</section>';
+    echo '</div>';
+    echo '</section>';
+  } else if ($page === 'truk') {
+    echo '<section class="truk-page">';
+    echo '<div class="grid-container">';
+    echo '<aside class="filter-area">';
+    include 'beranda/truk/filter-truk.php';
+    echo '</aside>';
+    echo '<section class="content-area">';
+    include 'beranda/truk/kelola-truk.php';
+    echo '</section>';
+    echo '</div>';
+    echo '</section>';
+  } else if ($page === 'alat_berat') {
+    echo '<section class="alat_berat_page">';
+    echo '<div class="grid-container">';
+    echo '<aside class="filter-area">';
+    include 'beranda/alat_berat/filter-alat-berat.php';
+    echo '</aside>';
+    echo '<section class="content-area">';
+    include 'beranda/alat_berat/kelola-alat-berat.php';
+    echo '</section>';
+    echo '</div>';
+    echo '</section>';
+  } else if ($page === 'sepeda') {
+    echo '<section class="sepeda-page">';
+    echo '<div class="grid-container">';
+    echo '<aside class="filter-area">';
+    include 'beranda/sepeda/filter-sepeda.php';
+    echo '</aside>';
+    echo '<section class="content-area">';
+    include 'beranda/sepeda/kelola-sepeda.php';
+    echo '</section>';
+    echo '</div>';
+    echo '</section>';
+  } else if ($page === 'kend_khusus') {
+    echo '<section class="kend_khusus_page">';
+    echo '<div class="grid-container">';
+    echo '<aside class="filter-area">';
+    include 'beranda/kend_khusus/filter-kend-khusus.php';
+    echo '</aside>';
+    echo '<section class="content-area">';
+    include 'beranda/kend_khusus/kelola-kend-khusus.php';
     echo '</section>';
     echo '</div>';
     echo '</section>';

@@ -1,4 +1,3 @@
-<!-- Nav Menu -->
 <nav>
   <ul class="main-menu">
     <li class="dropdown">
@@ -86,9 +85,9 @@
       <a href="index.php?page=mobil">Mobil</a>
     </li>
     <li><a href="index.php?page=motor">Motor</a></li>
-    <li><a href="#">Truk</a></li>
-    <li><a href="#">Alat Berat</a></li>
-    <li><a href="#">Sepeda</a></li>
-    <li><a href="#">Kendaraan Khusus</a></li>
+    <li><a href="index.php?page=truk">Truk</a></li>
+    <li><a href="index.php?page=alat_berat">Alat Berat</a></li>
+    <li><a href="index.php?page=sepeda">Sepeda</a></li>
+    <li><a href="index.php?page=kend_khusus">Kendaraan Khusus</a></li>
   </ul>
 </nav>

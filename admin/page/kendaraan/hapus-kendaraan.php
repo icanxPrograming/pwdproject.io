@@ -12,9 +12,17 @@ if (!$session->isLoggedIn()) {
 
 $type = $_GET['type'] ?? 'mobil';
 $id = intval($_GET['id']);
-$allowedTypes = ['mobil', 'motor'];
 
-if (!in_array($type, $allowedTypes) || !$id) {
+$typeMap = [
+  'alat-berat'       => 'alat_berat',
+  'kendaraan-khusus' => 'kend_khusus'
+];
+
+$dbType = array_key_exists($type, $typeMap) ? $typeMap[$type] : $type;
+
+$allowedDbTypes = ['mobil', 'motor', 'truk', 'alat_berat', 'sepeda', 'kend_khusus'];
+
+if (!in_array($dbType, $allowedDbTypes) || !$id) {
   header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=kendaraan&page=$type");
   exit;
 }

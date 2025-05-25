@@ -1,4 +1,5 @@
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.php'); ?>
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.php'); ?>
 
 <h2 class="mt-2" style="font-weight: 600; color: #333;">
   <i class="fas fa-tachometer-alt"></i> Dashboard Admin

@@ -70,7 +70,7 @@
   <div class="container">
     <div class="login-container">
       <div class="login-logo">
-        <img src="../asset/Logo Alter-Ex.png" alt="Alter-Ex Logo">
+        <img src="../asset/logo-banner/Logo Alter-Ex.png" alt="Alter-Ex Logo">
       </div>
       <form action="proses-login.php" method="POST">
         <div class="mb-4 position-relative">

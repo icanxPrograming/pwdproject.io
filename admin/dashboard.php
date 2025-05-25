@@ -5,13 +5,11 @@ $session = new AppSession();
 
 if (!$session->isLoggedIn() || !$session->isAdmin()) {
   header("Location: ../index.php");
-  exit();
+  exit;
 }
 
-// Ambil data user
-$user = $session->getUserData();
-?>
-<!doctype html>
+$user = $session->getUserData(); ?>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -139,6 +137,10 @@ $user = $session->getUserData();
         <div class="collapse" id="submenuKendaraan">
           <a href="dashboard.php?module=kendaraan&page=mobil" class="list-group-item list-group-item-action pl-5">Mobil</a>
           <a href="dashboard.php?module=kendaraan&page=motor" class="list-group-item list-group-item-action pl-5">Motor</a>
+          <a href="dashboard.php?module=kendaraan&page=truk" class="list-group-item list-group-item-action pl-5">Truk</a>
+          <a href="dashboard.php?module=kendaraan&page=alat_berat" class="list-group-item list-group-item-action pl-5">Alat Berat</a>
+          <a href="dashboard.php?module=kendaraan&page=sepeda" class="list-group-item list-group-item-action pl-5">Sepeda</a>
+          <a href="dashboard.php?module=kendaraan&page=kend_khusus" class="list-group-item list-group-item-action pl-5">Khusus</a>
         </div>
 
         <a href="dashboard.php?module=penjual&page=kelola-penjual" class="list-group-item list-group-item-action">
@@ -164,7 +166,7 @@ $user = $session->getUserData();
           <i class="fas fa-percent mr-2"></i> Promo
         </a>
         <a href="#" class="list-group-item list-group-item-action">
-          <i class="fas fa-headset mr-2"></i> Dukungan
+          <i class="fas fa-newspaper mr-2"></i> Berita
         </a>
         <a href="#" class="list-group-item list-group-item-action">
           <i class="fas fa-cog mr-2"></i> Pengaturan
@@ -205,7 +207,6 @@ $user = $session->getUserData();
         if (isset($_GET['module']) && isset($_GET['page'])) {
           $page = "{$_GET['module']}/{$_GET['page']}";
         }
-
         require "page/" . $page . ".php";
         ?>
       </div>
@@ -270,10 +271,13 @@ $user = $session->getUserData();
         });
       });
     });
+
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+      var fileName = this.files[0] ? this.files[0].name : '';
+      var label = this.nextElementSibling;
+      label.innerText = fileName || 'Pilih gambar';
+    });
   </script>
-
-
-
 </body>
 
 </html>

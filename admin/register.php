@@ -74,7 +74,7 @@ $session = new AppSession();
   <div class="container">
     <div class="register-container">
       <div class="register-logo">
-        <img src="../asset/Logo Alter-Ex.png" alt="Alter-Ex Logo">
+        <img src="../asset/logo-banner/Logo Alter-Ex.png" alt="Alter-Ex Logo">
       </div>
 
       <?php if (isset($_SESSION['error'])): ?>

@@ -10,10 +10,19 @@ if (!$session->isLoggedIn() || !$session->isAdmin()) {
 }
 
 $type = $_GET['type'] ?? 'mobil';
-$allowedTypes = ['mobil', 'motor'];
 
-if (!in_array($type, $allowedTypes)) {
-  header("Location: /PWD-Project-Mandiri/admin/dashboard.php?error=Jenis kendaraan tidak valid");
+$typeMap = [
+  'alat-berat'       => 'alat_berat',
+  'kendaraan-khusus' => 'kend_khusus'
+];
+
+$dbType = array_key_exists($type, $typeMap) ? $typeMap[$type] : $type;
+
+$allowedDbTypes = ['mobil', 'motor', 'truk', 'alat_berat', 'sepeda', 'kend_khusus'];
+
+if (!in_array($dbType, $allowedDbTypes)) {
+  $_SESSION['error'] = "Jenis kendaraan tidak valid.";
+  header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=kendaraan&page=$type&error=Jenis kendaraan tidak valid");
   exit;
 }
 
@@ -26,15 +35,14 @@ $harga_per_unit = $_POST['harga_per_unit'];
 $deskripsi = $_POST['deskripsi'];
 $status_post = $_POST['status_post'];
 
-// Mendapatkan root folder proyek dengan aman (folder satu tingkat di atas model)
-$projectRoot = realpath(dirname(__DIR__));
+$projectRoot = $_SERVER['DOCUMENT_ROOT']; // e.g., /var/www/html
 
-// Path folder target untuk simpan gambar
-$target_dir = $projectRoot . "/asset/$type/";
+$target_dir = $projectRoot . "/PWD-Project-Mandiri/asset/$type/";
 
 // Buat folder jika belum ada
 if (!is_dir($target_dir)) {
-  mkdir($target_dir, 0777, true);
+  header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=kendaraan&page=$type&error=Folder penyimpanan tidak ditemukan");
+  exit;
 }
 
 // Nama file gambar
