@@ -100,4 +100,17 @@ include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.p
       </div>
     </div>
   </div>
+
+  <!-- Berita -->
+  <div class="col-md-3 mb-4">
+    <div class="card border-0 shadow-sm" style="background-color:#e0e780; color:#4f522f;">
+      <div class="card-body">
+        <div class="card-title" style="font-weight: 600;">Berita</div>
+        <div style="font-size: 1.8rem;">
+          <?= isset($dataDashboard['berita']) ? $dataDashboard['berita'] : '0'; ?>
+          <i class="fas fa-newspaper float-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

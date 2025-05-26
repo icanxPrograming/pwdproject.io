@@ -64,3 +64,8 @@ $dataDashboard['lokasi'] = $row['total'];
 $query = $conn->query("SELECT COUNT(*) as total FROM promo WHERE status = 'Aktif'");
 $row = $query->fetch_assoc();
 $dataDashboard['promo'] = $row['total'];
+
+// Berita (status = 'Publish')
+$query = $conn->query("SELECT COUNT(*) as total FROM berita WHERE status = 'Publish'");
+$row = $query->fetch_assoc();
+$dataDashboard['berita'] = $row['total'];

@@ -112,6 +112,26 @@ $user = $session->getUserData(); ?>
     .card i {
       float: right;
     }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1050;
+      background-color: #0d6efd;
+      color: white;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border: none;
+      border-radius: 50%;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #scrollTopBtn:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 
@@ -165,7 +185,7 @@ $user = $session->getUserData(); ?>
         <a href="dashboard.php?module=promo&page=kelola-promo" class="list-group-item list-group-item-action">
           <i class="fas fa-percent mr-2"></i> Promo
         </a>
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href="dashboard.php?module=berita&page=kelola-berita" class="list-group-item list-group-item-action">
           <i class="fas fa-newspaper mr-2"></i> Berita
         </a>
         <a href="#" class="list-group-item list-group-item-action">
@@ -213,12 +233,39 @@ $user = $session->getUserData(); ?>
     </div>
   </div>
 
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" class="btn btn-primary rounded-circle shadow-sm" style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <!-- JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
+    // Atur jarak scroll sebelum tombol muncul (misalnya 300px)
+    const scrollThreshold = 500;
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    // Tampilkan/menghilangkan tombol saat scroll
+    window.addEventListener("scroll", function() {
+      if (window.pageYOffset > scrollThreshold) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    });
+
+    // Fungsi smooth scroll ke atas
+    scrollTopBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
     // Toggle sidebar
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
