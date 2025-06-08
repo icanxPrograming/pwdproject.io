@@ -23,5 +23,3 @@ class Sample_Koneksi
     return $this->conn;
   }
 }
-
-$NewSample = new Sample_Koneksi();

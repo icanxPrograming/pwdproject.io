@@ -70,7 +70,7 @@ if (!$row) {
 
       <div class="mb-3">
         <label>Tipe Penjual</label>
-        <select name="tipe_penjual" class="form-select" required>
+        <select name="tipe_penjual" class="form-control" required>
           <option value="dealer" <?= $row['tipe_penjual'] == 'dealer' ? 'selected' : '' ?>>Dealer</option>
           <option value="perorangan" <?= $row['tipe_penjual'] == 'perorangan' ? 'selected' : '' ?>>Perorangan</option>
         </select>
@@ -78,7 +78,7 @@ if (!$row) {
 
       <div class="mb-3">
         <label>Status</label>
-        <select name="status" class="form-select" required>
+        <select name="status" class="form-control" required>
           <option value="Aktif" <?= $row['status'] == 'Aktif' ? 'selected' : '' ?>>Aktif</option>
           <option value="Nonaktif" <?= $row['status'] == 'Nonaktif' ? 'selected' : '' ?>>Nonaktif</option>
         </select>

@@ -5,8 +5,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Session.php
 $session = new AppSession();
 $kendaraan = new Kendaraan();
 
-if (!$session->isLoggedIn()) {
-  header("Location: /PWD-Project-Mandiri/index.php");
+// Pastikan user sudah login DAN adalah admin
+if (!$session->isLoggedIn() || !$session->isAdmin()) {
+  header("Location: /PWD-Project-Mandiri/login.php");
   exit;
 }
 
@@ -27,13 +28,27 @@ if (!in_array($dbType, $allowedDbTypes) || !$id) {
   exit;
 }
 
-$row = $kendaraan->getById($type, $id);
+$row = $kendaraan->getById($dbType, $id);
 
-if ($row && $kendaraan->delete($type, $id)) {
-  // $gambarPath = $_SERVER['DOCUMENT_ROOT'] . "/PWD-Project-Mandiri/asset/$type/" . $row['gambar'];
-  // if (!empty($row['gambar']) && file_exists($gambarPath)) {
-  //   unlink($gambarPath);
+if ($row) {
+  // Hapus gambar dari server jika ada
+  // if (!empty($row['gambar'])) {
+  //   $projectRoot = $_SERVER['DOCUMENT_ROOT'];
+  //   $gambarPath = "$projectRoot/PWD-Project-Mandiri/asset/$type/" . $row['gambar'];
+
+  //   if (file_exists($gambarPath)) {
+  //     unlink($gambarPath); // Hapus file gambar
+  //   }
   // }
+
+  // Hapus data dari database
+  if ($kendaraan->delete($dbType, $id)) {
+    $_SESSION['success'] = "Data berhasil dihapus.";
+  } else {
+    $_SESSION['error'] = "Gagal menghapus data dari database.";
+  }
+} else {
+  $_SESSION['error'] = "Data tidak ditemukan.";
 }
 
 header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=kendaraan&page=$type");

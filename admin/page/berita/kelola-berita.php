@@ -18,7 +18,7 @@ $news = $new->getBerita();
   <div class="col">
     <div class="mb-2">
       <!-- Tombol Tambah -->
-      <a href="dashboard.php?module=berita&page=tambah-berita&type=berita" class="btn btn-primary">
+      <a href="dashboard.php?module=berita&page=tambah-berita&type=kelola-berita" class="btn btn-primary">
         <i class="fa fa-plus"></i> Tambah Berita
       </a>
     </div>
@@ -55,12 +55,11 @@ $news = $new->getBerita();
                 <a href="#" class="btn btn-sm btn-outline-success mr-1" title="Detail">
                   <i class="fa fa-eye"></i>
                 </a>
-                <a href="dashboard.php?module=berita&page=edit-berita&type=berita&id=<?= $row['id_berita'] ?>"
-                  class="btn btn-sm btn-outline-warning mr-1" title="Edit">
+                <a href="dashboard.php?module=berita&page=edit-berita&type=kelola-berita&id=<?= $row['id_berita'] ?>" class="btn btn-sm btn-outline-warning mr-1" title="Edit">
                   <i class="fa fa-edit"></i>
                 </a>
-                <a href="/PWD-Project-Mandiri/admin/page/berita/hapus-berita.php?type=berita&id=<?= $row['id_berita'] ?>"
-                  onclick="return confirm('Yakin ingin menghapus motor <?= addslashes($row['judul']) ?>?');"
+                <a href="/PWD-Project-Mandiri/admin/page/berita/hapus-berita.php?type=kelola-berita&id=<?= $row['id_berita'] ?>"
+                  onclick="return confirm('Yakin ingin menghapus data ini?');"
                   class="btn btn-sm btn-outline-danger" title="Hapus">
                   <i class="fa fa-trash"></i>
                 </a>

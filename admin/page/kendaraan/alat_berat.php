@@ -16,50 +16,56 @@ $heavy = $kendaraan->getAlatBerat();
 
 <div class="row">
   <div class="col">
-    <div class="mb-2">
+    <div class="mb-3">
       <a href="dashboard.php?module=kendaraan&page=tambah-kendaraan&type=alat_berat" class="btn btn-primary">
         <i class="fa fa-plus"></i> Tambah Alat Berat
       </a>
     </div>
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered table-sm">
       <thead class="thead-light">
         <tr>
-          <th scope="col" style="width: 40px;">NO</th>
-          <th scope="col" style="width: 200px;">Nama Alat Berat</th>
-          <th scope="col" style="width: 80px;">Tahun</th>
-          <th scope="col" style="width: 50px;">Jumlah Unit</th>
-          <th scope="col" style="width: 100px;">Harga (Per Unit)</th>
-          <th scope="col" style="width: 300px;">Deskripsi</th>
-          <th scope="col" style="width: 100px;">Status Posting</th>
+          <th scope="col" style="width: 40px;">No</th>
+          <th scope="col" style="width: 150px;">Nama Alat Berat</th>
+          <th scope="col" style="width: 90px;">Merk</th>
+          <th scope="col" style="width: 80px;">Jenis</th>
+          <th scope="col" style="width: 60px;">Tahun</th>
+          <th scope="col" style="width: 70px;">Bahan Bakar</th>
+          <th scope="col" style="width: 70px;">Transmisi</th>
+          <th scope="col" style="width: 50px;">Unit</th>
+          <th scope="col" style="width: 100px;">Harga/Unit</th>
+          <th scope="col" style="width: 100px;">Status</th>
           <th scope="col" style="width: 120px;">Aksi</th>
         </tr>
       </thead>
       <tbody>
-        <?php if (count($heavy) === 0): ?>
+        <?php if (empty($heavy)): ?>
           <tr>
-            <td colspan="8" class="text-center">Data belum tersedia.</td>
+            <td colspan="10" class="text-center text-muted">Belum ada data alat berat.</td>
           </tr>
         <?php else: ?>
-          <?php $nomor = 1;
-          foreach ($heavy as $row): ?>
+          <?php $nomor = 1; ?>
+          <?php foreach ($heavy as $row): ?>
             <tr>
               <td><?= $nomor++; ?></td>
-              <td><?= htmlspecialchars($row['nama_alat_berat']); ?></td>
-              <td><?= htmlspecialchars($row['tahun']); ?></td>
-              <td><?= htmlspecialchars($row['jumlah_unit']); ?></td>
-              <td><?= number_format($row['harga_per_unit'], 0, ',', '.') ?></td>
-              <td><?= htmlspecialchars($row['deskripsi']); ?></td>
-              <td><?= htmlspecialchars($row['status_post']); ?></td>
-              <td>
-                <a href="#" class="btn btn-sm btn-outline-success mr-1" data-toggle="tooltip" data-placement="top" title="Detail">
+              <td><?= htmlspecialchars($row['nama_alat_berat']) ?></td>
+              <td><?= htmlspecialchars($row['merk']) ?></td>
+              <td><?= htmlspecialchars($row['jenis_alat_berat']) ?></td>
+              <td><?= htmlspecialchars($row['tahun']) ?></td>
+              <td><?= htmlspecialchars($row['bahan_bakar'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['transmisi'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['jumlah_unit']) ?></td>
+              <td>Rp<?= number_format($row['harga_per_unit'], 0, ',', '.') ?></td>
+              <td><?= htmlspecialchars($row['status_post']) ?></td>
+              <td class="text-center">
+                <a href="#" class="btn btn-sm btn-outline-success mr-1" title="Detail">
                   <i class="fa fa-eye"></i>
                 </a>
                 <a href="dashboard.php?module=kendaraan&page=edit-kendaraan&type=alat_berat&id=<?= $row['id_alat_berat'] ?>" class="btn btn-sm btn-outline-warning mr-1" title="Edit">
                   <i class="fa fa-edit"></i>
                 </a>
                 <a href="/PWD-Project-Mandiri/admin/page/kendaraan/hapus-kendaraan.php?type=alat_berat&id=<?= $row['id_alat_berat'] ?>"
-                  onclick="return confirm('Yakin ingin menghapus data ini?');"
-                  class="btn btn-sm btn-outline-danger">
+                  onclick="return confirm('Yakin ingin menghapus <?= addslashes(htmlspecialchars($row['nama_alat_berat'])) ?>?');"
+                  class="btn btn-sm btn-outline-danger" title="Hapus">
                   <i class="fas fa-trash"></i>
                 </a>
               </td>

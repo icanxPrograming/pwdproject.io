@@ -6,66 +6,39 @@ $conn = $db->getConnection();
 
 $dataDashboard = [];
 
-// Total Kendaraan (dari tabel mobil, motor, truk, alatberat, sepeda, kend_khusus, status_post = 'Posting')
-$queryMobil = $conn->query("SELECT COUNT(*) as total FROM mobil WHERE status_post = 'Posting'");
-$rowMobil = $queryMobil->fetch_assoc();
-$totalMobil = $rowMobil['total'];
+// Helper function untuk ambil jumlah data dengan validasi
+function getCount($conn, $table, $condition = "1=1")
+{
+  $query = $conn->query("SELECT COUNT(*) AS total FROM `$table` WHERE $condition");
+  if ($query === false) {
+    return 0;
+  }
+  $row = $query->fetch_assoc();
+  return $row ? (int)$row['total'] : 0;
+}
 
-$queryMotor = $conn->query("SELECT COUNT(*) as total FROM motor WHERE status_post = 'Posting'");
-$rowMotor = $queryMotor->fetch_assoc();
-$totalMotor = $rowMotor['total'];
-
-$queryTruk = $conn->query("SELECT COUNT(*) as total FROM truk WHERE status_post = 'Posting'");
-$rowTruk = $queryTruk->fetch_assoc();
-$totalTruk = $rowTruk['total'];
-
-$queryAlatBerat = $conn->query("SELECT COUNT(*) as total FROM alat_berat WHERE status_post = 'Posting'");
-$rowAlatBerat = $queryAlatBerat->fetch_assoc();
-$totalAlatBerat = $rowAlatBerat['total'];
-
-$querySepeda = $conn->query("SELECT COUNT(*) as total FROM sepeda WHERE status_post = 'Posting'");
-$rowSepeda = $querySepeda->fetch_assoc();
-$totalSepeda = $rowSepeda['total'];
-
-$queryKendKhusus = $conn->query("SELECT COUNT(*) as total FROM kend_khusus WHERE status_post = 'Posting'");
-$rowKendKhusus = $queryKendKhusus->fetch_assoc();
-$totalKendKhusus = $rowKendKhusus['total'];
-
-// Jumlahkan semua total kendaraan
-$dataDashboard['kendaraan'] = $totalMobil + $totalMotor + $totalTruk + $totalAlatBerat + $totalSepeda + $totalKendKhusus;
-
+// Total Kendaraan Aktif (`status_post = 'Posting'`)
+$dataDashboard['kendaraan'] = getCount($conn, 'mobil', "status_post = 'Posting'")
+  + getCount($conn, 'motor', "status_post = 'Posting'")
+  + getCount($conn, 'truk', "status_post = 'Posting'")
+  + getCount($conn, 'alat_berat', "status_post = 'Posting'")
+  + getCount($conn, 'sepeda', "status_post = 'Posting'")
+  + getCount($conn, 'kend_khusus', "status_post = 'Posting'");
 
 // Penjual (status = 'Aktif')
-$query = $conn->query("SELECT COUNT(*) as total FROM penjual WHERE status = 'Aktif'");
-$row = $query->fetch_assoc();
-$dataDashboard['penjual'] = $row['total'];
+$dataDashboard['penjual'] = getCount($conn, 'penjual', "status = 'Aktif'");
 
-// Transaksi Penjualan (status = 'Selesai')
-$query = $conn->query("SELECT COUNT(*) as total FROM trans_penjualan WHERE status = 'Selesai'");
-$row = $query->fetch_assoc();
-$dataDashboard['penjualan'] = $row['total'];
-
-// Transaksi Pembelian (status = 'Selesai')
-$query = $conn->query("SELECT COUNT(*) as total FROM trans_pembelian WHERE status = 'Selesai'");
-$row = $query->fetch_assoc();
-$dataDashboard['pembelian'] = $row['total'];
-
-// Kategori (status = 'Aktif')
-$query = $conn->query("SELECT COUNT(*) as total FROM kategori WHERE status = 'Aktif'");
-$row = $query->fetch_assoc();
-$dataDashboard['kategori'] = $row['total'];
+// Transaksi (status = 'Selesai')
+$dataDashboard['transaksi'] = getCount($conn, 'transaksi', "status = 'Selesai'");
 
 // Lokasi (status = 'Aktif')
-$query = $conn->query("SELECT COUNT(*) as total FROM lokasi WHERE status = 'Aktif'");
-$row = $query->fetch_assoc();
-$dataDashboard['lokasi'] = $row['total'];
+$dataDashboard['lokasi'] = getCount($conn, 'lokasi', "status = 'Aktif'");
 
 // Promo (status = 'Aktif')
-$query = $conn->query("SELECT COUNT(*) as total FROM promo WHERE status = 'Aktif'");
-$row = $query->fetch_assoc();
-$dataDashboard['promo'] = $row['total'];
+$dataDashboard['promo'] = getCount($conn, 'promo', "status = 'Aktif'");
 
 // Berita (status = 'Publish')
-$query = $conn->query("SELECT COUNT(*) as total FROM berita WHERE status = 'Publish'");
-$row = $query->fetch_assoc();
-$dataDashboard['berita'] = $row['total'];
+$dataDashboard['berita'] = getCount($conn, 'berita', "status = 'Publish'");
+
+// Kebutuhan (status = 'Posting')
+$dataDashboard['kebutuhan'] = getCount($conn, 'kebutuhan', "status_post = 'Posting'");

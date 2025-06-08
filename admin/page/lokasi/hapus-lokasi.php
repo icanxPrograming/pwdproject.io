@@ -1,0 +1,35 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Lokasi.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Session.php';
+
+$session = new AppSession();
+$lokasi = new Lokasi();
+
+// Cek login dan role admin
+if (!$session->isLoggedIn() || !$session->isAdmin()) {
+  header("Location: /PWD-Project-Mandiri/login.php");
+  exit;
+}
+
+$type = $_GET['type'] ?? 'kelola-lokasi';
+$id = intval($_GET['id']);
+
+// Validasi tipe
+$allowedTypes = ['kelola-lokasi'];
+if (!in_array($type, $allowedTypes) || !$id) {
+  header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=lokasi&page=$type");
+  exit;
+}
+
+// Nama tabel dinamis (untuk fleksibilitas dan keterbacaan)
+$tableName = 'lokasi';
+
+// Hapus data lokasi
+if ($lokasi->delete($tableName, $id)) {
+  $_SESSION['success'] = "Data berhasil dihapus.";
+  header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=lokasi&page=$type&success=Data lokasi berhasil dihapus");
+} else {
+  $_SESSION['error'] = "Gagal menghapus data dari database.";
+  header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=lokasi&page=$type&error=Gagal menghapus data lokasi");
+}
+exit;

@@ -5,27 +5,45 @@
     <button class="card-slide-btn prev" id="cardPrevBtn">&lt;</button>
     <div class="card-slider">
       <div class="card-group" id="cardGroup">
-        <!-- Card Items -->
         <?php
         $cards = [
-          ["mobil-baru-icon.png", "Mobil Baru", "Penawaran Menarik"],
-          ["mobil-bekas-icon.png", "Mobil Bekas", "Berkualitas"],
-          ["motor-baru-icon.png", "Motor Baru", "Pilihan Terlengkap"],
-          ["truk-baru-icon.png", "Truk Baru", "Harga Kompetitif"],
-          ["berita-mobil-icon.png", "Berita Mobil", "Update Terbaru"],
-          ["bandingkan-mobil-icon.png", "Bandingkan Mobil", "Pilih yang Tepat"],
-          ["bandingkan-motor-icon.png", "Bandingkan Motor", "Pilih yang Tepat"],
-          ["bandingkan-truk-icon.png", "Bandingkan Truk", "Pilih yang Tepat"],
-          ["tukartambah-mobil-icon.png", "Tukar Tambah Mobil", "Pilih yang Tepat"],
-          ["tukartambah-motor-icon.png", "Tukar Tambah Motor", "Pilih yang Tepat"],
-          ["promo-icon.png", "Promo", "Pilih yang Tepat"],
+          ["asset/mobil-baru-icon.png", "Mobil Baru", "Penawaran Menarik"],
+          ["asset/motor-baru-icon.png", "Motor Baru", "Pilihan Terlengkap"],
+          ["asset/truk-baru-icon.png", "Truk Baru", "Harga Kompetitif"],
+          ["asset/berita-mobil-icon.png", "Berita Mobil", "Update Terbaru"],
+          ["asset/berita-motor-icon.png", "Berita Motor", "Update Terbaru"],
+          ["asset/bandingkan-mobil-icon.png", "Kebutuhan Mobil", "Pilih yang Tepat"],
+          ["asset/bandingkan-motor-icon.png", "Kebutuhan Motor", "Pilih yang Tepat"],
+          ["asset/video-mobil-icon.png", "Video Mobil", "Lihat & yang Tepat"],
+          ["asset/video-motor-icon.png", "Video Motor", "Lihat & yang Tepat"],
+          ["asset/video-truk-icon.png", "Video Truk", "Lihat & yang Tepat"],
+          ["asset/promo-icon.png", "Promo", "Pilih yang Tepat"],
         ];
         foreach ($cards as [$img, $title, $desc]): ?>
-          <div class="card">
-            <img src="<?= $img ?>" alt="<?= $title ?>" />
-            <h3><?= $title ?></h3>
-            <p><?= $desc ?></p>
-          </div>
+          <?php
+          $url = '';
+          if (strpos($title, 'Baru') !== false) {
+            $jenis = strtolower(str_replace(' Baru', '', $title));
+            $url = "/PWD-Project-Mandiri/index.php?page=$jenis&kondisi[]=Baru";
+          } elseif (strpos($title, 'Berita') !== false) {
+            $jenis = strtolower(str_replace(' Berita', '', $title));
+            $url = "/PWD-Project-Mandiri/index.php?page=berita&type=$jenis";
+          } elseif ($title === 'Promo') {
+            $url = "/PWD-Project-Mandiri/index.php?page=promo";
+          } elseif (strpos($title, 'Kebutuhan') !== false) {
+            $jenis = trim(str_replace('Kebutuhan ', ' ', $title));
+            $url = "/PWD-Project-Mandiri/index.php?page=kebutuhan&kategori[]=$jenis";
+          } else {
+            $url = "/PWD-Project-Mandiri/index.php?page=video";
+          }
+          ?>
+          <a href="<?= htmlspecialchars($url) ?>" class="card-link">
+            <div class="card">
+              <img src="<?= htmlspecialchars($img) ?>" alt="<?= htmlspecialchars($title) ?>" />
+              <h3><?= htmlspecialchars($title) ?></h3>
+              <p><?= htmlspecialchars($desc) ?></p>
+            </div>
+          </a>
         <?php endforeach; ?>
       </div>
     </div>

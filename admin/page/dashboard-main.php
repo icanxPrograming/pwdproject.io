@@ -23,6 +23,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.p
     </div>
   </div>
 
+  <!-- Barang kebutuhan -->
+  <div class="col-md-3 mb-4">
+    <div class="card border-0 shadow-sm" style="background-color:rgb(233, 227, 253); color:rgb(114, 13, 161);">
+      <div class="card-body">
+        <div class="card-title" style="font-weight: 600;">Total Kebutuhan Kendaraan</div>
+        <div style="font-size: 1.8rem;">
+          <?= isset($dataDashboard['kebutuhan']) ? $dataDashboard['kebutuhan'] : '0'; ?>
+          <i class="fas fa-wrench float-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Penjual -->
   <div class="col-md-3 mb-4">
     <div class="card border-0 shadow-sm" style="background-color: #fff3cd; color: #856404;">
@@ -36,40 +49,14 @@ include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.p
     </div>
   </div>
 
-  <!-- Pembelian -->
-  <div class="col-md-3 mb-4">
-    <div class="card border-0 shadow-sm" style="background-color: #d4edda; color: #155724;">
-      <div class="card-body">
-        <div class="card-title" style="font-weight: 600;">Pembelian Sukses</div>
-        <div style="font-size: 1.8rem;">
-          <?= isset($dataDashboard['pembelian']) ? $dataDashboard['pembelian'] : '0'; ?>
-          <i class="fas fa-shopping-cart float-right"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Transaksi Penjualan -->
+  <!-- Transaksi -->
   <div class="col-md-3 mb-4">
     <div class="card border-0 shadow-sm" style="background-color: #c8e6c9; color: #1b5e20;">
       <div class="card-body">
         <div class="card-title" style="font-weight: 600;">Transaksi Sukses</div>
         <div style="font-size: 1.8rem;">
-          <?= isset($dataDashboard['penjualan']) ? $dataDashboard['penjualan'] : '0'; ?>
+          <?= isset($dataDashboard['transaksi']) ? $dataDashboard['transaksi'] : '0'; ?>
           <i class="fas fa-file-invoice-dollar float-right"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Kategori -->
-  <div class="col-md-3 mb-4">
-    <div class="card border-0 shadow-sm" style="background-color: #ffe0b2; color: #e65100;">
-      <div class="card-body">
-        <div class="card-title" style="font-weight: 600;">Kategori Aktif</div>
-        <div style="font-size: 1.8rem;">
-          <?= isset($dataDashboard['kategori']) ? $dataDashboard['kategori'] : '0'; ?>
-          <i class="fas fa-tags float-right"></i>
         </div>
       </div>
     </div>

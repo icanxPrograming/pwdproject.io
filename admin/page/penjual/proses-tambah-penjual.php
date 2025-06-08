@@ -53,11 +53,10 @@ $data = [
 // Simpan ke database
 $penjual = new Penjual();
 if ($penjual->simpan('penjual', $data)) {
-  $success = urlencode('Data penjual berhasil ditambahkan');
+  $_SESSION['success'] = "Data berhasil ditambahkan.";
   header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=penjual&page=$type&success=$success");
 } else {
-  error_log("Gagal menyimpan penjual: " . print_r($data, true));
-  $error = urlencode('Gagal menyimpan data penjual');
+  $_SESSION['error'] = "Gagal menambahkan data.";
   header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=penjual&page=$type&error=$error");
 }
 exit;

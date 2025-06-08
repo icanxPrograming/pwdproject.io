@@ -26,6 +26,26 @@ class Berita extends Koneksi
     }
   }
 
+  public function getBeritaByKategoris(array $kategoris): array
+  {
+    if (empty($kategoris)) return [];
+
+    $placeholders = implode(',', array_fill(0, count($kategoris), '?'));
+    $types = str_repeat('s', count($kategoris));
+
+    $stmt = $this->conn->prepare("SELECT * FROM `berita` WHERE kategori IN ($placeholders)");
+    $stmt->bind_param($types, ...$kategoris);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+      $data[] = $row;
+    }
+
+    return $data;
+  }
+
   /**
    * Mengambil semua data dari tabel tertentu.
    *

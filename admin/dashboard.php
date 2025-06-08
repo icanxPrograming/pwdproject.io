@@ -69,13 +69,7 @@ $user = $session->getUserData(); ?>
     }
 
     #sidebar-wrapper {
-      width: 250px;
       transition: margin 0.3s ease;
-    }
-
-
-    #sidebar-wrapper {
-      min-height: 100vh;
       background-color: #212529;
       color: white;
     }
@@ -94,7 +88,10 @@ $user = $session->getUserData(); ?>
     }
 
     #page-content-wrapper {
-      flex: 1;
+      margin-left: 250px;
+      /* Sesuaikan dengan lebar sidebar */
+      flex-grow: 1;
+      min-height: 100vh;
       padding: 20px;
       background-color: #ffffff;
     }
@@ -139,8 +136,7 @@ $user = $session->getUserData(); ?>
 
   <div id="wrapper">
     <!-- Sidebar -->
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper" class="d-flex flex-column position-relative">
+    <div id="sidebar-wrapper" class="text-white d-flex flex-column position-fixed h-100" style="width: 250px;">
       <div class="sidebar-heading text-center py-4 border-bottom">
         <h4><i class="fas fa-car"></i> Alter-Ex</h4>
         <small>Admin Panel</small>
@@ -163,22 +159,18 @@ $user = $session->getUserData(); ?>
           <a href="dashboard.php?module=kendaraan&page=kend_khusus" class="list-group-item list-group-item-action pl-5">Khusus</a>
         </div>
 
+        <a href="dashboard.php?module=kebutuhan&page=kelola-kebutuhan" class="list-group-item list-group-item-action">
+          <i class="fas fa-wrench mr-2"></i> Kebutuhan Kendaraan
+        </a>
+
         <a href="dashboard.php?module=penjual&page=kelola-penjual" class="list-group-item list-group-item-action">
-          <i class="fas fa-user-tie mr-2"></i> Kelola Penjual
+          <i class="fas fa-user-tie mr-2"></i> Penjual
         </a>
 
-        <a href="#submenuTransaksi" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="collapse" aria-expanded="false">
-          <span><i class="fas fa-file-invoice-dollar mr-2"></i> Transaksi</span>
-          <i class="fas fa-chevron-down"></i>
+        <a href="dashboard.php?module=transaksi&page=kelola-transaksi" class="list-group-item list-group-item-action">
+          <i class="fas fa-file-invoice-dollar mr-2"></i> Transaksi
         </a>
-        <div class="collapse" id="submenuTransaksi">
-          <a href="dashboard.php?module=transaksi&page=kelola-penjualan" class="list-group-item list-group-item-action pl-5">Penjualan</a>
-          <a href="dashboard.php?module=transaksi&page=kelola-pembelian" class="list-group-item list-group-item-action pl-5">Pembelian</a>
-        </div>
 
-        <a href="dashboard.php?module=kategori&page=kelola-kategori" class="list-group-item list-group-item-action">
-          <i class="fas fa-tags mr-2"></i> Kategori
-        </a>
         <a href="dashboard.php?module=lokasi&page=kelola-lokasi" class="list-group-item list-group-item-action">
           <i class="fas fa-map-marker-alt mr-2"></i> Lokasi
         </a>
@@ -188,13 +180,13 @@ $user = $session->getUserData(); ?>
         <a href="dashboard.php?module=berita&page=kelola-berita" class="list-group-item list-group-item-action">
           <i class="fas fa-newspaper mr-2"></i> Berita
         </a>
-        <a href="#" class="list-group-item list-group-item-action">
-          <i class="fas fa-cog mr-2"></i> Pengaturan
+        <a href="dashboard.php?module=video&page=kelola-video" class="list-group-item list-group-item-action">
+          <i class="fas fa-video mr-2"></i> Kelola Video
         </a>
       </div>
 
       <!-- Tombol ke Landing Page -->
-      <a href="../index.php" class="list-group-item list-group-item-action text-center position-absolute w-100" style="bottom: 0;">
+      <a href="../index.php" class="list-group-item list-group-item-action text-center text-white">
         <i class="fas fa-home mr-2"></i> Kembali ke Halaman Utama
       </a>
     </div>
@@ -212,7 +204,7 @@ $user = $session->getUserData(); ?>
                 <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($_SESSION['username'] ?? 'Admin'); ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Profil</a>
+                <!-- <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Profil</a> -->
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Keluar</a>
               </div>

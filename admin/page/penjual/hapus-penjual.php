@@ -26,10 +26,10 @@ $tableName = 'penjual';
 
 // Hapus data penjual
 if ($penjual->delete($tableName, $id)) {
-  // Redirect dengan pesan sukses
+  $_SESSION['success'] = "Data berhasil dihapus.";
   header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=penjual&page=$type&success=Data penjual berhasil dihapus");
 } else {
-  // Redirect dengan pesan error
+  $_SESSION['error'] = "Gagal menghapus data dari database.";
   header("Location: /PWD-Project-Mandiri/admin/dashboard.php?module=penjual&page=$type&error=Gagal menghapus data penjual");
 }
 exit;

@@ -12,24 +12,24 @@
     </div>
     <div class="footer-section">
       <div class="link">
-        <a href="#">Pusat Bantuan</a><br />
-        <a href="#">Kebijakan Privasi</a><br />
-        <a href="#">Tata Cara Pembayaran</a><br />
-        <a href="#">News & Article</a>
+        <a href="/PWD-Project-Mandiri/index.php?page=services&section=bantuan">Pusat Bantuan</a><br />
+        <a href="/PWD-Project-Mandiri/index.php?page=services&section=privasi">Kebijakan Privasi</a><br />
+        <a href="/PWD-Project-Mandiri/index.php?page=services&section=pembayaran">Tata Cara Pembayaran</a><br />
+        <a href="index.php?page=berita">News & Article</a>
       </div>
     </div>
     <div class="footer-section">
       <h3>Hubungi Kami</h3>
       <div class="icon-contact">
-        <a href="#" class="contact-item">
+        <a href="mailto:isan.mhmd004@gmail.com?subject=Kontak%20Alter-Ex&body=Halo%20Alter-Ex%2C%0ASaya%20ingin%20bertanya..." class="contact-item">
           <i data-feather="mail"></i>
-          <span>Email: tubes@yahoo.com</span>
+          <span>Email: alterex@gmail.com</span>
         </a>
         <a href="#" class="contact-item">
           <i data-feather="headphones"></i>
           <span>Telp: (021) 3190 2000</span>
         </a>
-        <a href="#" class="contact-item">
+        <a href="https://wa.me/6281808313324" target="_blank" class="contact-item">
           <i data-feather="message-circle"></i>
           <span>Chat With Us</span>
         </a>
@@ -38,9 +38,9 @@
 
     <div class="footer-section">
       <div class="social-icons">
-        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/1ArkEzfZr8/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/si.icannn?igsh=eWMyZ3BneWQ4dm9w" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://youtube.com/@si.icannn?si=7U945xthO_C1rFfI" target="_blank"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
       <img src="asset/logo-banner/Logo Alter-Ex.png" alt="bottom">
     </div>
     <div class="end-footer-content">
-      <p>Alter-Ex-Finance Berizin dan Diawasi oleh Otoritas Jasa Perwebsitan</p>
+      <p>Alter-Ex-Finance Berizin dan Diawasi oleh Otoritas Jasa Keuangan</p>
     </div>
     <div class="end-footer-content">
       <p>&copy; 2025 Alter-Ex</p>
