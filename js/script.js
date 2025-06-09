@@ -537,6 +537,23 @@ function handleSearch() {
   let targetPage = null;
   let filters = {};
 
+  if (query.includes("bantuan") || query.includes("pusat bantuan")) {
+    window.location.href = `/PWD-Project-Mandiri/index.php?page=services`;
+    return;
+  }
+  if (query.includes("privasi") || query.includes("kebijakan privasi")) {
+    window.location.href = `/PWD-Project-Mandiri/index.php?page=services`;
+    return;
+  }
+  if (
+    query.includes("pembayaran") ||
+    query.includes("tata cara pembayaran") ||
+    query.includes("bayar")
+  ) {
+    window.location.href = `/PWD-Project-Mandiri/index.php?page=services`;
+    return;
+  }
+
   if (query.includes("promo")) {
     window.location.href = `/PWD-Project-Mandiri/index.php?page=promo`;
     return;
@@ -761,23 +778,43 @@ function showDetailModal(data) {
     data.deskripsi || "Tidak tersedia."
   }</p>`;
 
-  // Tombol Aksi
-  if (data.type === "kebutuhan") {
-    beliLink.href = `/PWD-Project-Mandiri/detail-kebutuhan.php?type=kebutuhan&id=${data.id}`;
-    chatLink.href = `https://wa.me/6281808313324?text=Saya%20tertarik%20dengan%20${encodeURIComponent(
-      data.nama
-    )}.%20Apakah%20masih%20tersedia?`;
+  // Chat Admin selalu bisa diakses
+  chatLink.href = `https://wa.me/6281808313324?text=Saya%20tertarik%20dengan%20${encodeURIComponent(
+    data.nama
+  )}.%20Apakah%20masih%20tersedia?`;
+
+  if (isLoggedIn) {
+    if (data.type === "kebutuhan") {
+      beliLink.href = `/PWD-Project-Mandiri/pesanan/pesanan.php?type=kebutuhan&id=${data.id}`;
+    } else {
+      beliLink.href = `/PWD-Project-Mandiri/pesanan/pesanan.php?type=${data.type}&id=${data.id}`;
+    }
+    beliLink.removeAttribute("onclick");
   } else {
-    beliLink.href = `/PWD-Project-Mandiri/detail-kendaraan.php?type=${data.type}&id=${data.id}`;
-    chatLink.href = `https://wa.me/6281808313324?text=Saya%20tertarik%20dengan%20${encodeURIComponent(
-      data.nama
-    )}.%20Apakah%20masih%20tersedia?`;
+    beliLink.href = "javascript:void(0)";
+    beliLink.setAttribute(
+      "onclick",
+      "alert('Anda harus login terlebih dahulu untuk melakukan pembelian.')"
+    );
   }
 
   // Tampilkan modal
   const modal = document.getElementById("detailModal");
   modal.classList.add("show");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const links = document.querySelectorAll(".promo-link");
+
+  links.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      if (!isLoggedIn) {
+        e.preventDefault();
+        alert("Anda harus login terlebih dahulu untuk melakukan pembelian.");
+      }
+    });
+  });
+});
 
 function hideDetailModal() {
   const modal = document.getElementById("detailModal");

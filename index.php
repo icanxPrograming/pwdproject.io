@@ -1,4 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Session.php';
+$session = new AppSession();
 date_default_timezone_set('Asia/Jakarta');
 ?>
 
@@ -147,6 +149,7 @@ date_default_timezone_set('Asia/Jakarta');
   </div>
   <script src="js/script.js"></script>
   <script>
+    const isLoggedIn = <?= json_encode($session->isLoggedIn()) ?>;
     const availableLocations = [
       <?php foreach ($dataLokasi as $row): ?> "<?= addslashes(htmlspecialchars($row['nama_lokasi'], ENT_QUOTES, 'UTF-8')) ?>",
       <?php endforeach; ?>

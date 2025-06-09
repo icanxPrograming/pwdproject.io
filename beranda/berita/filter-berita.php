@@ -13,7 +13,7 @@ $uniqueKategoris = array_merge(['Semua'], $uniqueKategoris);
 <div class="news-category-filter">
   <div class="category-tabs">
     <?php foreach ($uniqueKategoris as $kategori): ?>
-      <button class="category-tab <?= $_GET['kategori'] === $kategori ? 'active' : '' ?>" data-kategori="<?= htmlspecialchars($kategori) ?>">
+      <button class="category-tab <?= ($_GET['kategori'] ?? '') === $kategori ? 'active' : '' ?>" data-kategori="<?= htmlspecialchars($kategori) ?>">
         <?= htmlspecialchars($kategori) ?>
       </button>
     <?php endforeach; ?>

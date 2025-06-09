@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Kendaraan.php';
 $kendaraan = new Kendaraan();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Session.php';
+$session = new AppSession();
 
 // Ambil semua filter dari GET
 $filters = [];

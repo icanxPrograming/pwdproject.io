@@ -3,7 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Session.php
 $session = new AppSession();
 
 if (!$session->isLoggedIn()) {
-  die('Anda harus login terlebih dahulu untuk mengakses halaman ini.');
+  header("Location: /PWD-Project-Mandiri/admin/login.php?error=not_logged_in");
+  exit();
 }
 
 $user = $session->getUserData();
