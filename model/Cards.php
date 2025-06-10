@@ -1,7 +1,7 @@
 <?php
 require_once('Koneksi.php');
 
-class Kategori extends Koneksi
+class Cards extends Koneksi
 {
   private $conn;
 
@@ -20,7 +20,7 @@ class Kategori extends Koneksi
    */
   private function validateTable(string $table): void
   {
-    $allowedTables = ['kategori'];
+    $allowedTables = ['cards'];
     if (!in_array($table, $allowedTables)) {
       throw new Exception("Tabel '$table' tidak diizinkan.");
     }
@@ -49,19 +49,28 @@ class Kategori extends Koneksi
     return $data;
   }
 
-  public function getByJenis($jenis)
+  /**
+   * Mengambil semua data cards dengan status 'Aktif' dan urutan ASC.
+   *
+   * @return array<int, array<string, mixed>>
+   */
+  public function getAllCardsAsc($table): array
   {
-    $stmt = $this->conn->prepare("SELECT * FROM kategori WHERE jenis = ? AND status = 'Aktif'");
-    $stmt->bind_param("s", $jenis);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $this->validateTable($table);
+
+    $query = "SELECT * FROM `$table` WHERE status = 'Aktif' ORDER BY urutan ASC";
+    $result = $this->conn->query($query);
 
     $data = [];
-    while ($row = $result->fetch_assoc()) {
-      $data[] = $row;
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+      }
     }
+
     return $data;
   }
+
 
   /**
    * Mengambil satu data berdasarkan ID.
@@ -177,8 +186,8 @@ class Kategori extends Koneksi
    *
    * @return array<int, array<string, mixed>>
    */
-  public function getKategori(): array
+  public function getCards(): array
   {
-    return $this->getAllFromTable('kategori');
+    return $this->getAllCardsAsc('cards');
   }
 }

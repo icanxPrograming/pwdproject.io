@@ -6,7 +6,6 @@ $conn = $db->getConnection();
 
 $dataDashboard = [];
 
-// Helper function untuk ambil jumlah data dengan validasi
 function getCount($conn, $table, $condition = "1=1")
 {
   $query = $conn->query("SELECT COUNT(*) AS total FROM `$table` WHERE $condition");
@@ -25,8 +24,11 @@ $dataDashboard['kendaraan'] = getCount($conn, 'mobil', "status_post = 'Posting'"
   + getCount($conn, 'sepeda', "status_post = 'Posting'")
   + getCount($conn, 'kend_khusus', "status_post = 'Posting'");
 
-// Penjual (status = 'Aktif')
-$dataDashboard['penjual'] = getCount($conn, 'penjual', "status = 'Aktif'");
+// Banner (status = 'Aktif')
+$dataDashboard['banner'] = getCount($conn, 'banner', "status = 'Aktif'");
+
+// Cards (status = 'Aktif')
+$dataDashboard['cards'] = getCount($conn, 'cards', "status = 'Aktif'");
 
 // Transaksi (status = 'Selesai')
 $dataDashboard['transaksi'] = getCount($conn, 'transaksi', "status = 'Selesai'");
@@ -42,3 +44,9 @@ $dataDashboard['berita'] = getCount($conn, 'berita', "status = 'Publish'");
 
 // Kebutuhan (status = 'Posting')
 $dataDashboard['kebutuhan'] = getCount($conn, 'kebutuhan', "status_post = 'Posting'");
+
+// Video (status = 'Posting')
+$dataDashboard['video'] = getCount($conn, 'video', "status_post = 'Posting'");
+
+// Services (status = 'Aktif')
+$dataDashboard['services'] = getCount($conn, 'services', "status = 'Aktif'");

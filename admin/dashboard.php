@@ -163,8 +163,12 @@ $user = $session->getUserData(); ?>
           <i class="fas fa-wrench mr-2"></i> Kebutuhan Kendaraan
         </a>
 
-        <a href="dashboard.php?module=penjual&page=kelola-penjual" class="list-group-item list-group-item-action">
-          <i class="fas fa-user-tie mr-2"></i> Penjual
+        <a href="dashboard.php?module=banner&page=kelola-banner" class="list-group-item list-group-item-action">
+          <i class="fas fa-map mr-2"></i> Banner
+        </a>
+
+        <a href="dashboard.php?module=cards&page=kelola-cards" class="list-group-item list-group-item-action">
+          <i class="fas fa-window-maximize mr-2"></i> Cards
         </a>
 
         <a href="dashboard.php?module=transaksi&page=kelola-transaksi" class="list-group-item list-group-item-action">
@@ -182,6 +186,9 @@ $user = $session->getUserData(); ?>
         </a>
         <a href="dashboard.php?module=video&page=kelola-video" class="list-group-item list-group-item-action">
           <i class="fas fa-video mr-2"></i> Kelola Video
+        </a>
+        <a href="dashboard.php?module=services&page=kelola-services" class="list-group-item list-group-item-action">
+          <i class="fas fa-cogs mr-2"></i> Services
         </a>
       </div>
 
@@ -234,6 +241,27 @@ $user = $session->getUserData(); ?>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: 'textarea[name=konten]',
+      height: 300,
+      menubar: false,
+      plugins: [
+        'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+        'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+        'media', 'table', 'emoticons', 'help'
+      ],
+      toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist outdent indent | link image | preview media fullscreen | ' +
+        'forecolor backcolor emoticons | help',
+      setup: function(editor) {
+        editor.on('change', function() {
+          editor.save();
+        });
+      }
+    });
+  </script>
 
   <script>
     // Atur jarak scroll sebelum tombol muncul (misalnya 300px)

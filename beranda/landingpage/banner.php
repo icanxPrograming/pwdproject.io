@@ -1,12 +1,20 @@
-<!-- Home START -->
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/Banner.php';
+$bannerModel = new Banner();
+
+$data = $bannerModel->getBanner();
+?>
 <section class="banner">
   <div class="slider-container">
     <button class="slide-btn prev">&lt;</button>
     <div class="slides">
-      <img src="https://imgcdn.oto.com/marketing/wuling-air-ev-desktop-min-1729491857.jpg" alt="Slide 1" />
-      <img src="https://imgcdn.oto.com/marketing/chery-omoda-5-desktop-min-1729491988.jpg" alt="Slide 2" />
-      <img src="https://imgcdn.oto.com/marketing/vinfast-vf-3-ev-desktop-com-1739276779.jpg" alt="Slide 3" />
+      <?php foreach ($data as $index => $banner): ?>
+        <img src="<?= htmlspecialchars($banner['url_gambar']) ?>" alt="Slide <?= $index + 1 ?>" />
+      <?php endforeach; ?>
     </div>
     <button class="slide-btn next">&gt;</button>
   </div>
 </section>
+
+<!-- Link tambahan -->
+<!-- https://imgcdn.oto.com/marketing/oto-landing-page-insurance05x11zon-1748955891.jpg -->

@@ -12,9 +12,9 @@
     </div>
     <div class="footer-section">
       <div class="link">
-        <a href="/PWD-Project-Mandiri/index.php?page=services&section=bantuan">Pusat Bantuan</a><br />
-        <a href="/PWD-Project-Mandiri/index.php?page=services&section=privasi">Kebijakan Privasi</a><br />
-        <a href="/PWD-Project-Mandiri/index.php?page=services&section=pembayaran">Tata Cara Pembayaran</a><br />
+        <a href="/PWD-Project-Mandiri/index.php?page=services&section=pusat-bantuan">Pusat Bantuan</a><br />
+        <a href="/PWD-Project-Mandiri/index.php?page=services&section=kebijakan-privasi">Kebijakan Privasi</a><br />
+        <a href="/PWD-Project-Mandiri/index.php?page=services&section=tata-cara-pembayaran">Tata Cara Pembayaran</a><br />
         <a href="index.php?page=berita">News & Article</a>
       </div>
     </div>

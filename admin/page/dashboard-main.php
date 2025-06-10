@@ -36,14 +36,27 @@ include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.p
     </div>
   </div>
 
-  <!-- Penjual -->
+  <!-- Banner -->
   <div class="col-md-3 mb-4">
     <div class="card border-0 shadow-sm" style="background-color: #fff3cd; color: #856404;">
       <div class="card-body">
-        <div class="card-title" style="font-weight: 600;">Penjual Terdaftar</div>
+        <div class="card-title" style="font-weight: 600;">Total Banner</div>
         <div style="font-size: 1.8rem;">
-          <?= isset($dataDashboard['penjual']) ? $dataDashboard['penjual'] : '0'; ?>
-          <i class="fas fa-user-tie float-right"></i>
+          <?= isset($dataDashboard['banner']) ? $dataDashboard['banner'] : '0'; ?>
+          <i class="fas fa-map float-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="col-md-3 mb-4">
+    <div class="card border-0 shadow-sm" style="background-color:#c3d80a; color:#51580f;">
+      <div class="card-body">
+        <div class="card-title" style="font-weight: 600;">Total Card</div>
+        <div style="font-size: 1.8rem;">
+          <?= isset($dataDashboard['cards']) ? $dataDashboard['cards'] : '0'; ?>
+          <i class="fas fa-window-maximize float-right"></i>
         </div>
       </div>
     </div>
@@ -100,4 +113,31 @@ include($_SERVER['DOCUMENT_ROOT'] . '/PWD-Project-Mandiri/model/data_dashboard.p
       </div>
     </div>
   </div>
+
+  <!-- Video -->
+  <div class="col-md-3 mb-4">
+    <div class="card border-0 shadow-sm" style="background-color:rgb(227, 227, 230); color:rgb(231, 15, 15);">
+      <div class="card-body">
+        <div class="card-title" style="font-weight: 600;">Total Video</div>
+        <div style="font-size: 1.8rem;">
+          <?= isset($dataDashboard['video']) ? $dataDashboard['video'] : '0'; ?>
+          <i class="fas fa-video float-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="col-md-3 mb-4">
+    <div class="card border-0 shadow-sm" style="background-color:rgb(42, 39, 204); color:rgb(255, 255, 255);">
+      <div class="card-body">
+        <div class="card-title" style="font-weight: 600;">Services</div>
+        <div style="font-size: 1.8rem;">
+          <?= isset($dataDashboard['services']) ? $dataDashboard['services'] : '0'; ?>
+          <i class="fas fa-cogs float-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -1,7 +1,7 @@
 <?php
 require_once('Koneksi.php');
 
-class Penjual extends Koneksi
+class Banner extends Koneksi
 {
   private $conn;
 
@@ -20,7 +20,7 @@ class Penjual extends Koneksi
    */
   private function validateTable(string $table): void
   {
-    $allowedTables = ['penjual'];
+    $allowedTables = ['banner'];
     if (!in_array($table, $allowedTables)) {
       throw new Exception("Tabel '$table' tidak diizinkan.");
     }
@@ -48,6 +48,29 @@ class Penjual extends Koneksi
 
     return $data;
   }
+
+  /**
+   * Mengambil semua data banner dengan status 'Aktif' dan urutan ASC.
+   *
+   * @return array<int, array<string, mixed>>
+   */
+  public function getAllBannerAsc($table): array
+  {
+    $this->validateTable($table);
+
+    $query = "SELECT * FROM `$table` WHERE status = 'Aktif' ORDER BY urutan ASC";
+    $result = $this->conn->query($query);
+
+    $data = [];
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+      }
+    }
+
+    return $data;
+  }
+
 
   /**
    * Mengambil satu data berdasarkan ID.
@@ -163,8 +186,8 @@ class Penjual extends Koneksi
    *
    * @return array<int, array<string, mixed>>
    */
-  public function getPenjual(): array
+  public function getBanner(): array
   {
-    return $this->getAllFromTable('penjual');
+    return $this->getAllBannerAsc('banner');
   }
 }
