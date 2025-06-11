@@ -192,10 +192,10 @@ $user = $session->getUserData(); ?>
         </a>
       </div>
 
-      <!-- Tombol ke Landing Page -->
-      <a href="../index.php" class="list-group-item list-group-item-action text-center text-white">
+      <!-- Tombol ke Landing Page / Aktifkan jika ingin ke halaman utama -->
+      <!-- <a href="../index.php" class="list-group-item list-group-item-action text-center text-white">
         <i class="fas fa-home mr-2"></i> Kembali ke Halaman Utama
-      </a>
+      </a> -->
     </div>
 
 
@@ -208,7 +208,7 @@ $user = $session->getUserData(); ?>
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown">
-                <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($_SESSION['username'] ?? 'Admin'); ?>
+                <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($_SESSION['email'] ?? 'Admin'); ?>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <!-- <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Profil</a> -->
