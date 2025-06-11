@@ -77,7 +77,7 @@ $userData = $session->isLoggedIn() ? $session->getUserData() : null;
         <div class="user-menu">
           <button class="user-btn">
             <i class="fas fa-user-circle"></i>
-            <span><?= htmlspecialchars($userData['username']) ?></span>
+            <span><?= htmlspecialchars($userData['email']) ?></span>
             <i class="fas fa-chevron-down"></i>
           </button>
           <div class="dropdown-user">

@@ -16,7 +16,7 @@
         <tr>
           <th scope="col">No</th>
           <th scope="col">Invoice</th>
-          <th scope="col">Nama Pembeli</th>
+          <th scope="col">Email Pembeli</th>
           <th scope="col">Kategori</th>
           <th scope="col">Nama Produk</th>
           <th scope="col">Jumlah</th>
@@ -41,7 +41,7 @@
           <tr>
             <td><?= $nomor++; ?></td>
             <td><?= htmlspecialchars($row['no_invoice']); ?></td>
-            <td><?= htmlspecialchars($row['nama_pembeli']); ?></td>
+            <td><?= htmlspecialchars($row['email_pembeli']); ?></td>
             <td><?= htmlspecialchars(ucfirst($row['type'])); ?></td>
             <td><?= htmlspecialchars($row['nama_produk']); ?></td>
             <td><?= htmlspecialchars($row['jumlah_unit']); ?></td>

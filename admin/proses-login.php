@@ -6,10 +6,10 @@ $auth = new Auth();
 $session = new AppSession();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = $_POST["username"];
+  $email = $_POST["email"];
   $password = $_POST["password"];
 
-  $user = $auth->login($username, $password);
+  $user = $auth->login($email, $password);
 
   if ($user !== false) {
     $session->createSession($user);

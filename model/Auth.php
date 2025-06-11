@@ -18,11 +18,11 @@ class Auth extends Koneksi
    * @param string $password Kata sandi
    * @return array{id_pengguna: int, username: string, level: int}|false Data pengguna jika login berhasil, false jika gagal
    */
-  public function login($username, $password)
+  public function login($email, $password)
   {
-    $sql = "SELECT * FROM auth WHERE username=?";
+    $sql = "SELECT * FROM auth WHERE email=?";
     $stmt = $this->conn->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -31,7 +31,7 @@ class Auth extends Koneksi
       if (password_verify($password, $row['password'])) {
         return [
           'id_pengguna' => $row['id_pengguna'],
-          'username' => $row['username'],
+          'email' => $row['email'],
           'level' => $row['level']
         ];
       }

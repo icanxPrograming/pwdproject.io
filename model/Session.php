@@ -18,7 +18,7 @@ class AppSession extends Koneksi
   public function createSession($userData)
   {
     $_SESSION['id_pengguna'] = $userData['id_pengguna'];
-    $_SESSION['username'] = $userData['username'];
+    $_SESSION['email'] = $userData['email'];
     $_SESSION['level'] = $userData['level'];
   }
 
@@ -60,7 +60,7 @@ class AppSession extends Koneksi
 
     return [
       'id_pengguna' => $_SESSION['id_pengguna'],
-      'username' => $_SESSION['username'],
+      'email' => $_SESSION['email'],
       'level' => $_SESSION['level']
     ];
   }

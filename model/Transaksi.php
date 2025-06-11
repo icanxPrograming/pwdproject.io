@@ -60,7 +60,7 @@ class Transaksi extends Koneksi
   {
     $query = "
             INSERT INTO transaksi (
-                id_pembeli, type, id_produk, nama_pembeli, nama_produk,
+                id_pembeli, type, id_produk, email_pembeli, nama_produk,
                 jumlah_unit, total_harga, metode_bayar, pesan_tambahan, no_invoice
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ";
@@ -77,7 +77,7 @@ class Transaksi extends Koneksi
       $data['id_pembeli'],
       $data['type'],
       $data['id_produk'],
-      $data['nama_pembeli'],
+      $data['email_pembeli'],
       $data['nama_produk'],
       $data['jumlah_unit'],
       $data['total_harga'],
@@ -148,7 +148,7 @@ class Transaksi extends Koneksi
                 t.id_transaksi,
                 t.type,
                 t.id_produk,
-                t.nama_pembeli,
+                t.email_pembeli,
                 t.nama_produk,
                 t.jumlah_unit,
                 t.total_harga,

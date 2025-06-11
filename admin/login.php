@@ -74,10 +74,10 @@
       </div>
       <form action="proses-login.php" method="POST">
         <div class="mb-4 position-relative">
-          <i class="fas fa-user input-icon"></i>
+          <i class="fas fa-envelope input-icon"></i>
           <div class="form-floating">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-            <label for="username">Username</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="email" required>
+            <label for="email">Email</label>
           </div>
         </div>
 

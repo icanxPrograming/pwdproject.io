@@ -202,9 +202,9 @@ $stok = ($type === 'kebutuhan') ? ($dataProduk['jumlah'] ?? 1) : ($dataProduk['j
         <input type="hidden" name="id_user" value="<?= htmlspecialchars($user['id_pengguna']) ?>">
 
         <div class="form-group">
-          <label>Nama Pemesan</label>
+          <label>Email Pemesan</label>
           <input type="text"
-            value="<?= htmlspecialchars($user['username']) ?>"
+            value="<?= htmlspecialchars($user['email']) ?>"
             readonly>
         </div>
 
