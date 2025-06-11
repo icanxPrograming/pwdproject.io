@@ -860,8 +860,7 @@ function batalkanPesanan(idTransaksi) {
   );
   if (konfirmasi) {
     window.location.href =
-      "/PWD-Project-Mandiri/pesanan/batalkan-pesanan-user.php?id=" +
-      idTransaksi;
+      "/PWD-Project-Mandiri/pesanan/batalkan-pesanan.php?id=" + idTransaksi;
   }
 }
 

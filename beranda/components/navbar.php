@@ -106,5 +106,6 @@
     <li><a href="index.php?page=sepeda">Sepeda</a></li>
     <li><a href="index.php?page=kend_khusus">Kendaraan Khusus</a></li>
     <li><a href="index.php?page=kebutuhan">Kebutuhan Kendaraan</a></li>
+    <li><a href="index.php?page=video">Video Kendaraan</a></li>
   </ul>
 </nav>

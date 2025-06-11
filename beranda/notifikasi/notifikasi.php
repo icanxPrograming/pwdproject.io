@@ -45,7 +45,7 @@ $totalPages = ceil($totalNotifikasi / $limit);
           <div class="notification-footer">
             <small><?= $tanggal ?></small>
             <?php if ($notif['status'] !== 'diarsip'): ?>
-              <a href="/PWD-Project-Mandiri/view/beranda/notifikasi/archive-notifikasi.php?id=<?= $notif['id_notifikasi'] ?>"
+              <a href="/PWD-Project-Mandiri/beranda/notifikasi/archive-notifikasi.php?id=<?= $notif['id_notifikasi'] ?>"
                 onclick="return confirm('Arsip notifikasi ini?')"
                 class="notification-archive">Arsip</a>
             <?php else: ?>
